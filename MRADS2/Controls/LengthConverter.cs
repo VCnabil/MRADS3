@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace MRADS.Controls
+namespace MRADS2.Controls
 {
     public class LengthConverter : IValueConverter
     {
