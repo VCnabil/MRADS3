@@ -37,7 +37,7 @@
             <controls:RotaryGaugeZoneConfig StartAngle="135" EndAngle="180" Length="9" Radius="1" Color="Red"/>
             <controls:RotaryGaugeZoneConfig StartAngle="180" EndAngle="225" Length="9" Radius="1" Color="Lime"/>
         </x:Array>
-        <!--<LengthConverter:LengthConverter x:Key="LengthConverter"/>-->
+            <controls:LengthConverter x:Key="LengthConverter"/>
     </UserControl.Resources>
 
     <Grid>
