@@ -1,0 +1,751 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Kvaser.KvmLib</name>
+    </assembly>
+    <members>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.MAX_STRING_SIZE">
+            <summary>Maximum size of strings.</summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.KvmLibDLL.kvmLogMsgEx">
+            <summary>A CAN message.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogMsgEx.id">
+            <summary>The message identifier.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogMsgEx.timeStamp">
+            <summary>The timestamp in units of 1 nanosecond.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogMsgEx.channel">
+            <summary>The device channel on which the message arrived, 0,1,... </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogMsgEx.dlc">
+            <summary>  The length of the message. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogMsgEx.flags">
+            <summary>Message flags.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogMsgEx.data">
+            <summary>Message data (64 bytes) </summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.KvmLibDLL.kvmLogRtcClockEx">
+            <summary>A RTC clock message.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogRtcClockEx.calendarTime">
+            <summary>RTC date, seconds since 1970-01-01T00:00:00+00:00 (UTC) </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogRtcClockEx.timeStamp">
+            <summary>The timestamp in units of 1 nanosecond. </summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.KvmLibDLL.kvmLogTriggerEx">
+            <summary>A trigger message.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogTriggerEx.type">
+            <summary>The type of trigger </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogTriggerEx.preTrigger">
+            <summary>Pretrigger time in milliseconds.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogTriggerEx.postTrigger">
+            <summary>Posttrigger time in milliseconds.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogTriggerEx.trigMask">
+            <summary>Bitmask with all active triggers. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogTriggerEx.timeStamp">
+            <summary>The timestamp in units of 1 nanosecond.</summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.KvmLibDLL.kvmLogVersionEx">
+            <summary>A version message.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogVersionEx.lioMajor">
+            <summary>lioMajor</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogVersionEx.lioMinor">
+            <summary>lioMinor</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogVersionEx.fwMajor">
+            <summary>fwMajor</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogVersionEx.fwMinor">
+            <summary>fwMinor</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogVersionEx.fwBuild">
+            <summary>fwBuild</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogVersionEx.serialNumber">
+            <summary>serialNumber</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogVersionEx.eanHi">
+            <summary>eanHi</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogVersionEx.eanLo">
+            <summary>eanLo</summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.KvmLibDLL.kvmLogEventEx">
+            <summary>The union of events used by <see cref="M:Kvaser.KvmLib.KvmLibDLL.kvmKmeReadEvent(Kvaser.KvmLib.Kvmlib.Handle,Kvaser.KvmLib.KvmLibDLL.kvmLogEventEx@)"/></summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogEventEx.type">
+            <summary>Event types in log </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogEventEx.msg">
+            <summary>A CAN message.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogEventEx.rtc">
+            <summary>An RTC message.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogEventEx.trig">
+            <summary>kvmLogTriggerEx</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogEventEx.ver">
+            <summary>A version message.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.KvmLibDLL.kvmLogEventEx.raw">
+            <summary>Raw data in a array.</summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.Kvmlib">
+            <summary>
+                The Kvmlib is a library for accessing Kvaser Memorator (2nd generation) devices.
+            </summary>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.Close(Kvaser.KvmLib.Kvmlib.Handle)">
+            <summary>Close the connection to the Memorator (device or file) opened with <see cref="M:Kvaser.KvmLib.Kvmlib.DeviceOpen(System.Int32,Kvaser.KvmLib.Kvmlib.Status@,Kvaser.KvmLib.Kvmlib.DeviceType)"/> or <see cref="M:Kvaser.KvmLib.Kvmlib.DeviceMountKmf(Kvaser.KvmLib.Kvmlib.Handle)"/>. The handle becomes invalid.</summary>
+            <param name="h">An open handle to a converter.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.DeviceDiskSize(Kvaser.KvmLib.Kvmlib.Handle,System.Int32@)">
+            <summary>Get disk size, reported in number of (512 byte) sectors.</summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="diskSize">Disk size in number of (512 byte) sectors.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.DeviceDiskStatus(Kvaser.KvmLib.Kvmlib.Handle,System.Int32@)">
+            <summary>Check if the SD memory card is present.
+            <para>&#160;</para>
+            Note. This function is not supported by all devices.
+            </summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="present">Non-zero means that SD memory card is present.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.DeviceFlashLeds(Kvaser.KvmLib.Kvmlib.Handle)">
+            <summary>Flash all LEDs on the opened Memorator device</summary>
+            <param name="h">An open kvmHandle.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.DeviceFormatDisk(Kvaser.KvmLib.Kvmlib.Handle,System.Int32,System.Int32,System.Int32)">
+            <summary>Format the SD memory card in a connected Memorator.</summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="filesystem">A filesystem code, <see cref="T:Kvaser.KvmLib.Kvmlib.KvmFS"/>, specifying the type of filesystem to format to.</param>
+            <param name="reserveSpace">Space to reserve for user files, in MB.</param>
+            <param name="dbaseSpace">Space to reserve for database files, in MB.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.DeviceGetRTC(Kvaser.KvmLib.Kvmlib.Handle,System.Int32@)">
+            <summary>Get date and time from the RTC chip.  The time is returned in standard unix time(number of seconds since 1970-01-01T00:00:00+00:00).
+            Only for device handles.</summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="t">Time in Unix time.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.DeviceGetSerialNumber(Kvaser.KvmLib.Kvmlib.Handle,System.Int32@)">
+            <summary>Get serial number related to the Memorator handle.</summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="serial">Serial number of connected device.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.DeviceGetSoftwareInfo(Kvaser.KvmLib.Kvmlib.Handle,Kvaser.KvmLib.Kvmlib.VersionInfo,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>Get serial number related to the Memorator handle.</summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="itemCode">An item code specifying the type of version to get. <see cref="T:Kvaser.KvmLib.Kvmlib.VersionInfo"/></param>
+            <param name="major">Major version number.</param>
+            <param name="minor">Minor version number.</param>
+            <param name="build">Build number.</param>
+            <param name="flags">For internal use only.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.DeviceMountKmf(Kvaser.KvmLib.Kvmlib.Handle)">
+            <summary>Mount the log area on the SD card on a connected Kvaser Memorator.
+            <para>&#160;</para>
+            Note.  Must be called after <see cref="M:Kvaser.KvmLib.Kvmlib.DeviceOpen(System.Int32,Kvaser.KvmLib.Kvmlib.Status@,Kvaser.KvmLib.Kvmlib.DeviceType)"/> before any subsequent log operations are called.</summary>
+            <param name="h">An open kvmHandle.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.DeviceMountKmfEx(Kvaser.KvmLib.Kvmlib.Handle,System.Int32@,System.Int32@)">
+            <summary>Mount the log area on the SD card on a connected Kvaser Memorator and return the logger data format(LDF) version.
+            <para>&#160;</para>
+            Note. Must be called after <see cref="M:Kvaser.KvmLib.Kvmlib.DeviceOpen(System.Int32,Kvaser.KvmLib.Kvmlib.Status@,Kvaser.KvmLib.Kvmlib.DeviceType)"/> before any subsequent log operations are called.
+            </summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="ldfMajor">Major LDF version kvmLDF_MAJOR_xxx.</param>
+            <param name="ldfMinor">Minor LDF version.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.DeviceOpen(System.Int32,Kvaser.KvmLib.Kvmlib.Status@,Kvaser.KvmLib.Kvmlib.DeviceType)">
+            <summary>Connect to a Memorator device and obtain a handle for subsequent device operations.
+            The argument cardNr is the Card Number property (decreased by one) displayed in Kvaser Hardware.
+            </summary>
+            <param name="cardNr">Card number.</param>
+            <param name="status"><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</param>
+            <param name="deviceType"><see cref="T:Kvaser.KvmLib.Kvmlib.DeviceType"/></param>
+            <returns> Returns an open handle to a Memorator on success.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.DeviceSetRTC(Kvaser.KvmLib.Kvmlib.Handle,System.Int32)">
+            <summary>Set date and time in the RTC. The time is in standard Unix
+            time(number of seconds since 1970-01-01T00:00:00+00:00).
+            Only for device handles.
+            </summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="t">Time in Unix time.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.GetErrorText(Kvaser.KvmLib.Kvmlib.Status,System.String@)">
+            <summary>Convert a <see cref="T:Kvaser.KvmLib.Kvmlib.Status"/> error code to a text.
+            </summary>
+            <param name="error">The error code to convert. </param>
+            <param name="buf">Error Text.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success else Status.ERR_XXX.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.GetVersion(System.Int32@,System.Int32@,System.Int32@)">
+            <summary>Returns the version of the kvmlib DLL.</summary>
+            <param name="major">Major version number.</param>
+            <param name="minor">Minor version number.</param>
+            <param name="build">Build version number.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success else Status.ERR_XXX.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.GetUTF8Bytes(System.String)">
+            <summary>
+                Create a byte[] containing the utf-8 representation of string stringValue and a terminating'\0' character.
+            </summary>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.GetUTF8String(System.Byte[])">
+            <summary>
+                Convert byte[] contents to a string object using the utf-8 decoder.
+            </summary>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.Initialize">
+            <summary>This function must be called before any other functions are used. It will initialize the memolib library.
+            </summary>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.KmeCloseFile(Kvaser.KvmLib.Kvmlib.Handle)">
+            <summary>Close an open KME file opened with <see cref="M:Kvaser.KvmLib.Kvmlib.KmeOpenFile(System.String,Kvaser.KvmLib.Kvmlib.Status@,System.Int32)"/> or created with <see cref="M:Kvaser.KvmLib.Kvmlib.KmeCreateFile(System.String,Kvaser.KvmLib.Kvmlib.Status@,System.Int32)"/>. The handle becomes invalid.
+            </summary>
+            <param name="h">An open handle to a KME file.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.KmeCountEvents(Kvaser.KvmLib.Kvmlib.Handle,System.Int32@)">
+            <summary>Close an open KME file opened with <see cref="M:Kvaser.KvmLib.Kvmlib.KmeOpenFile(System.String,Kvaser.KvmLib.Kvmlib.Status@,System.Int32)"/> or created with <see cref="M:Kvaser.KvmLib.Kvmlib.KmeCreateFile(System.String,Kvaser.KvmLib.Kvmlib.Status@,System.Int32)"/>. The handle becomes invalid.
+            </summary>
+            <param name="h">An open handle to a KME file.</param>
+            <param name="eventCount">Approximate number of events in a KME file.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.KmeCountEventsEx(Kvaser.KvmLib.Kvmlib.Handle,System.Int64@)">
+            <summary>Close an open KME file opened with <see cref="M:Kvaser.KvmLib.Kvmlib.KmeOpenFile(System.String,Kvaser.KvmLib.Kvmlib.Status@,System.Int32)"/> or created with <see cref="M:Kvaser.KvmLib.Kvmlib.KmeCreateFile(System.String,Kvaser.KvmLib.Kvmlib.Status@,System.Int32)"/>. The handle becomes invalid.
+            </summary>
+            <param name="h">An open handle to a KME file.</param>
+            <param name="eventCount">Approximate number of events in a KME file.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.KmeCreateFile(System.String,Kvaser.KvmLib.Kvmlib.Status@,System.Int32)">
+            <summary> Open a KME file for writing and obtain a handle for subsequent operations.
+             Note that <see cref="M:Kvaser.KvmLib.Kvmlib.KmeCreateFile(System.String,Kvaser.KvmLib.Kvmlib.Status@,System.Int32)"/> will overwrite any existing file and that
+            <see cref="F:Kvaser.KvmLib.Kvmlib.FILE_TYPE_KME24"/> and <see cref="F:Kvaser.KvmLib.Kvmlib.FILE_TYPE_KME25"/> are deprecated formats. Please
+            use <see cref="F:Kvaser.KvmLib.Kvmlib.FILE_TYPE_KME40"/>.</summary>
+            <param name="filename">The full path and name of the KME file, e.g. C:\\temp\\myfile.kme</param>
+            <param name="status"><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</param>
+            <param name="filetype">FILE_TYPE_xxx</param>
+            <returns>Returns an open handle to a KME file on success.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.KmeOpenFile(System.String,Kvaser.KvmLib.Kvmlib.Status@,System.Int32)">
+            <summary>Open a KME file for reading and obtain a handle for subsequent operations.</summary>
+            <param name="filename">The full path and name of the KME file, e.g. C:\\temp\\myfile.kme</param>
+            <param name="status"><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</param>
+            <param name="filetype">FILE_TYPE_xxx</param>
+            <returns>Returns an open handle to a KME file on success.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.KmeReadEvent(Kvaser.KvmLib.Kvmlib.Handle,Kvaser.KvmLib.Kvmlib.Log@)">
+            <summary>Read an event from a KME file opened with <see cref="M:Kvaser.KvmLib.Kvmlib.KmeOpenFile(System.String,Kvaser.KvmLib.Kvmlib.Status@,System.Int32)"/>.</summary>
+            <param name="h">An open handle to a KME file.</param>
+            <param name="e">Event from a KME file.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success,
+            <see cref="F:Kvaser.KvmLib.Kvmlib.Status.ERR_NOLOGMSG"/> on EOF,
+             Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.KmeScanFileType(System.String,System.Int32@)">
+            <summary> Open a KME file and obtain the file format type.</summary>
+            <param name="filename">The full path and name of the KME file, e.g. C:\\temp\\myfile.kme</param>
+            <param name="filetype">FILE_TYPE_xxx</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.KmeWriteEvent(Kvaser.KvmLib.Kvmlib.Handle,Kvaser.KvmLib.Kvmlib.Log)">
+            <summary>Write an event to a KME file created with <see cref="M:Kvaser.KvmLib.Kvmlib.KmeCreateFile(System.String,Kvaser.KvmLib.Kvmlib.Status@,System.Int32)"/>.</summary>
+            <param name="h">An open handle to a KME file.</param>
+            <param name="e">Event to write.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.KmfEraseDbaseFile(Kvaser.KvmLib.Kvmlib.Handle,System.Int32)">
+            <summary>Erase the database file.</summary>
+            <param name="h">An open handle to a KME file.</param>
+            <param name="filenumber">Not Implemented</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.KmfGetDbaseFile(Kvaser.KvmLib.Kvmlib.Handle,System.String,System.String@)">
+            <summary>Read the database file. The database will be extracted to path and the name of the created file copied to filenamebuf.</summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="path">The path where the database file will be stored.</param>
+            <param name="filenamebuf">The filename of the database.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.KmfGetUsage(Kvaser.KvmLib.Kvmlib.Handle,System.Int32@,System.Int32@)">
+            <summary>Get disk usage statistics, reported in number of (512 byte) sectors.</summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="totalSectorCount">Total number of sectors devoted for logging</param>
+            <param name="usedSectorCount">Number of logging sectors used.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.KmfOpen(System.String,Kvaser.KvmLib.Kvmlib.Status@,Kvaser.KvmLib.Kvmlib.DeviceType)">
+            <summary>Open a KMF file on a hard disk or SD card reader and obtain a handle for subsequent operations and return
+            the logger data format(LDF) version. <see cref="T:Kvaser.KvmLib.Kvmlib.DeviceType"/> is the device type that generated the file.
+            <para>&#160;</para>
+            Note: Only the path of the argument filename is used. This function will then look for all relevantly
+            named files(e.g.LOG00000.KMF, LOG00001.KMF...) in the directory specified by this path. </summary>
+            <param name="filename">KMF filename.</param>
+            <param name="status"><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</param>
+            <param name="deviceType"><see cref="T:Kvaser.KvmLib.Kvmlib.DeviceType"/></param>
+            <returns>Returns an open handle to a Memorator on success, otherwise INVALID_HANDLE_VALUE.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.KmfOpenEx(System.String,Kvaser.KvmLib.Kvmlib.Status@,Kvaser.KvmLib.Kvmlib.DeviceType,System.Int32@,System.Int32@)">
+            <summary>Open a KMF file on a hard disk or SD card reader and obtain a handle for subsequent operations and return
+            the logger data format(LDF) version. <see cref="T:Kvaser.KvmLib.Kvmlib.DeviceType"/> is the device type that generated the file.
+            <para>&#160;</para>
+            Note: Only the path of the argument filename is used. This function will then look for all relevantly
+            named files(e.g.LOG00000.KMF, LOG00001.KMF...) in the directory specified by this path. </summary>
+            <param name="filename">KMF filename.</param>
+            <param name="status"><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</param>
+            <param name="deviceType">kvmDEVICE_xxx</param>
+            <param name="ldfMajor">Major LDF version kvmLDF_MAJOR_xxx.</param>
+            <param name="ldfMinor">Minor LDF version.</param>
+            <returns>Returns an open handle to a Memorator on success, otherwise INVALID_HANDLE_VALUE.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.KmfPutDbaseFile(Kvaser.KvmLib.Kvmlib.Handle,System.String)">
+            <summary>Write the database file.</summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="filename"> The full path and name of the file, e.g. C:\\temp\\myfile.data
+            Note that the filename will be truncated to an 8.3 filename.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.KmfReadConfig(Kvaser.KvmLib.Kvmlib.Handle,System.Byte[]@)">
+            <summary>Read binary configuration data (param.lif) from a KMF file.</summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="buf"> The configuration (param.lif)</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.KmfValidate(Kvaser.KvmLib.Kvmlib.Handle)">
+            <summary>Check for errors.</summary>
+            <param name="h">An open kvmHandle.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.KmfWriteConfig(Kvaser.KvmLib.Kvmlib.Handle,System.Byte[])">
+            <summary>Write binary configuration data (param.lif) to a KMF file.</summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="buf"> The configuration (param.lif) to be written</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.LogFileDeleteAll(Kvaser.KvmLib.Kvmlib.Handle)">
+            <summary>Delete all log files from a Memorator.</summary>
+            <param name="h">An open kvmHandle.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.LogFileDismount(Kvaser.KvmLib.Kvmlib.Handle)">
+            <summary>Dismount the log file opened with kvmLogFileMount(). The handle will stay valid.</summary>
+            <param name="h">An open kvmHandle.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.LogFileGetCount(Kvaser.KvmLib.Kvmlib.Handle,System.Int32@)">
+            <summary>Count the number of log files</summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="fileCount">The number of log files on disk.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.LogFileGetType(Kvaser.KvmLib.Kvmlib.Handle,System.Int32,Kvaser.KvmLib.Kvmlib.LogFileType@)">
+            <summary>Get type of log file</summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="fileIndx">Index of the log file.</param>
+            <param name="logFileType"><see cref="F:Kvaser.KvmLib.Kvmlib.LogFileType.ERR"/></param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.LogFileGetCreatorSerial(Kvaser.KvmLib.Kvmlib.Handle,System.Int32@)">
+            <summary>Get the serialnumber of the interface that created the log file.</summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="serialNumber">The serialnumber of the interface that created the log file.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.LogFileGetEndTime(Kvaser.KvmLib.Kvmlib.Handle,System.Int32@)">
+            <summary>Get the time of the last event in the log file. The time is returned in standard unix time format(number of seconds since 1970-01-01T00:00:00+00:00).</summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="endTime">The time of the last event in the log file (UTC)</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.LogFileGetStartTime(Kvaser.KvmLib.Kvmlib.Handle,System.Int32@)">
+            <summary>Get the time of the first event in the log file. The time is returned in standard unix time format(number of seconds since 1970-01-01T00:00:00+00:00).</summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="startTime">The time of the first event in the log file (UTC)</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.LogFileMount(Kvaser.KvmLib.Kvmlib.Handle,System.Int32,System.Int32@)">
+            <summary>Mount the log file with the specified index. The index starts at 0. The approximate number of events in the log file is returned.</summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="fileIndx">Index of the log file to open.</param>
+            <param name="eventCount">The approximate number of events in the log file.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.LogFileMountEx(Kvaser.KvmLib.Kvmlib.Handle,System.Int32,System.Int64@)">
+            <summary>Mount the log file with the specified index. The index starts at 0. The approximate number of events in the log file is returned.</summary>
+            <param name="h">An open kvmHandle.</param>
+            <param name="fileIndx">Index of the log file to open.</param>
+            <param name="eventCount">The approximate number of events in the log file.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.LogFileReadEvent(Kvaser.KvmLib.Kvmlib.Handle,Kvaser.KvmLib.Kvmlib.Log@)">
+            <summary>Read an event from a log file opened with <see cref="M:Kvaser.KvmLib.Kvmlib.LogFileMount(Kvaser.KvmLib.Kvmlib.Handle,System.Int32,System.Int32@)"/>. The next call to <see cref="M:Kvaser.KvmLib.Kvmlib.LogFileReadEvent(Kvaser.KvmLib.Kvmlib.Handle,Kvaser.KvmLib.Kvmlib.Log@)"/> will read the next event.</summary>
+            <param name="h">An open kvmHandle.</param>
+            /// <param name="e">Event from log file.</param>
+            <returns><see cref="F:Kvaser.KvmLib.Kvmlib.Status.OK"/> if success, Status.ERR_xxx (negative) if failure.</returns>
+        </member>
+        <member name="T:Kvaser.KvmLib.Kvmlib.Handle">
+            <summary>Kvm  Handle</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Handle.handle">
+            <summary>Kvm  Handle</summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.Kvmlib.Log">
+            <summary>Log</summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.Kvmlib.LogMsg">
+            <summary>LogMsg</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogMsg.id">
+            <summary>id</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogMsg.timeStamp">
+            <summary>timeStamp</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogMsg.channel">
+            <summary>channel</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogMsg.dlc">
+            <summary>dlc</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogMsg.flags">
+            <summary>flags</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogMsg.data">
+            <summary>data</summary>
+        </member>
+        <member name="M:Kvaser.KvmLib.Kvmlib.LogMsg.#ctor">
+            <summary>LogMsg</summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.Kvmlib.LogRtcClock">
+            <summary>LogRtcClock</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogRtcClock.calendarTime">
+            <summary>calendarTime</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogRtcClock.timeStamp">
+            <summary>timeStamp</summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.Kvmlib.LogTrigger">
+            <summary>LogTrigger</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogTrigger.type">
+            <summary>type</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogTrigger.preTrigger">
+            <summary>preTrigger</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogTrigger.postTrigger">
+            <summary>postTrigger</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogTrigger.trigMask">
+            <summary>trigMask</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogTrigger.timeStamp">
+            <summary>timeStamp</summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.Kvmlib.LogVersion">
+            <summary>LogVersion</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogVersion.lioMajor">
+            <summary>lioMajor</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogVersion.lioMinor">
+            <summary>lioMinor</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogVersion.fwMajor">
+            <summary>fwMajor</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogVersion.fwMinor">
+            <summary>fwMinor</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogVersion.fwBuild">
+            <summary>fwBuild</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogVersion.serialNumber">
+            <summary>serialNumber</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogVersion.eanHi">
+            <summary>eanHi</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogVersion.eanLo">
+            <summary>eanLo</summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.Kvmlib.DeviceType">
+            <summary> Device type, used to connect to a Memorator device. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.DeviceType.kvmDEVICE_MHYDRA">
+            <summary> Kvaser Memorator (2nd generation) </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.DeviceType.kvmDEVICE_MHYDRA_EXT">
+            <summary> Kvaser Memorator (2nd generation) with extended data capabilities. </summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.Kvmlib.KvmFS">
+            <summary>
+               File system used when formatting disk. Used with <see cref="M:Kvaser.KvmLib.Kvmlib.DeviceFormatDisk(Kvaser.KvmLib.Kvmlib.Handle,System.Int32,System.Int32,System.Int32)"/>.
+            </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.KvmFS.FS_FAT16">
+            <summary>File system fat16.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.KvmFS.FS_FAT32">
+            <summary>File system fat32.</summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.Kvmlib.Status">
+            <summary>
+                Status return codes
+            </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.OK">
+            <summary>OK.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.Fail">
+            <summary>Generic error.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_PARAM">
+            <summary>Error in supplied parameters.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_LOGFILEOPEN">
+            <summary>Can't find/open log file. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_NOSTARTTIME">
+            <summary>Start time not found. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_NOLOGMSG">
+            <summary>No log message found. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_LOGFILEWRITE">
+            <summary>Error writing log file. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.EOF">
+            <summary>End of file found. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_NO_DISK">
+            <summary>No disk found. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_LOGFILEREAD">
+            <summary>Error while reading log file. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_QUEUE_FULL">
+            <summary>Queue is full. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_CRC_ERROR">
+            <summary>CRC check failed. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_SECTOR_ERASED">
+            <summary>Sector unexpectadly erased. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_FILE_ERROR">
+            <summary>File I/O error. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_DISK_ERROR">
+            <summary>General disk error. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_DISKFULL_DIR">
+            <summary>Disk full (directory). </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_DISKFULL_DATA">
+            <summary>Disk full (data). </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_SEQ_ERROR">
+            <summary>Unexpected sequence. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_FILE_SYSTEM_CORRUPT">
+            <summary>File system corrupt. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_UNSUPPORTED_VERSION">
+            <summary>Unsupported version. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_NOT_IMPLEMENTED">
+            <summary>Not implemented. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_FATAL_ERROR">
+            <summary>Fatal error. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_ILLEGAL_REQUEST">
+            <summary>Illegal request. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_FILE_NOT_FOUND">
+            <summary>File not found. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_NOT_FORMATTED">
+            <summary>Disk not formatted. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_WRONG_DISK_TYPE">
+            <summary>Wrong disk type. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_TIMEOUT">
+            <summary>Timeout. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_DEVICE_COMM_ERROR">
+            <summary>Device communication error. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_OCCUPIED">
+            <summary>Device occupied. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_USER_CANCEL">
+            <summary>User abort. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_FIRMWARE">
+            <summary>Firmware error. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_CONFIG_ERROR">
+            <summary>Configuration error. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_WRITE_PROT">
+            <summary>Disk is write protected. </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Status.ERR_RESULT_TOO_BIG">
+            <summary>Result is too big for an out-parameter. </summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.Kvmlib.Type">
+            <summary>Log type</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Type.INVALID">
+            <summary>Invalid MEMOLOG type.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Type.CLOCK">
+            <summary>The type used in <see cref="T:Kvaser.KvmLib.Kvmlib.LogRtcClock"/>.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Type.MSG">
+            <summary>The type used in <see cref="T:Kvaser.KvmLib.Kvmlib.LogMsg"/>.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Type.TRIGGER">
+            <summary>The type used in <see cref="T:Kvaser.KvmLib.Kvmlib.LogTrigger"/>.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.Type.VERSION">
+            <summary>The type used in <see cref="T:Kvaser.KvmLib.Kvmlib.LogVersion"/>.</summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.Kvmlib.LogFileType">
+            <summary>
+                Type of log file.
+            </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogFileType.ERR">
+            <summary> A log file containing only error frames, and some frames before and after the error frame.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LogFileType.ALL">
+            <summary> A log file with all frames.</summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.Kvmlib.VersionInfo">
+            <summary>
+               Different types of version information that can be extracted using <see cref="M:Kvaser.KvmLib.Kvmlib.DeviceGetSoftwareInfo(Kvaser.KvmLib.Kvmlib.Handle,Kvaser.KvmLib.Kvmlib.VersionInfo,System.Int32@,System.Int32@,System.Int32@,System.Int32@)"/>.
+            </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.VersionInfo.KVMLIB">
+            <summary>Returns the version of kvmlib.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.VersionInfo.DRIVER">
+            <summary>Returns the used driver version information.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.VersionInfo.FIRMWARE">
+            <summary>Returns the device firmware version information.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.VersionInfo.DRIVER_PRODUCT">
+            <summary>Obsolete. Returns the product version information.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.VersionInfo.CONFIG_VERSION_NEEDED">
+            <summary>Returns the version of the binary format the device requires (param.lif).</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.VersionInfo.CPLD_VERSION">
+            <summary>Obsolete.</summary>
+        </member>
+        <member name="T:Kvaser.KvmLib.Kvmlib.MsgFlags">
+            <summary>
+            The following flags can be found in a <see cref="T:Kvaser.KvmLib.Kvmlib.LogMsg"/> message flags field
+            returned from <see cref="M:Kvaser.KvmLib.Kvmlib.KmeReadEvent(Kvaser.KvmLib.Kvmlib.Handle,Kvaser.KvmLib.Kvmlib.Log@)"/>. All flags and/or combinations of them are
+            meaningful for logged message.
+            </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.MsgFlags.RTR">
+            <summary>Message is a remote request</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.MsgFlags.STD">
+            <summary>Message has a standard ID</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.MsgFlags.EXT">
+            <summary>Message has an extended ID</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.MsgFlags.WAKEUP">
+            <summary>Message is a WAKEUP message (SWC hardware.) </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.MsgFlags.NERR">
+            <summary>NERR was active during the message (TJA1054 hardware) </summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.MsgFlags.ERROR_FRAME">
+            <summary>Message is an error frame</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.MsgFlags.TXACK">
+            <summary>Message is a TX ACK (msg is really sent)</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.MsgFlags.TXRQ">
+            <summary>Message is a TX REQUEST (msg is transfered to the CAN controller chip)</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.MsgFlags.ERR_OVERRUN">
+            <summary> Message overrun condition occurred.</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.MsgFlags.FDMSG_FDF">
+            <summary>Obsolete, use MSGFLAG_FDF instead</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.MsgFlags.FDMSG_BRS">
+            <summary>Message is sent/received with bit rate switch (CAN FD)</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.MsgFlags.FDMSG_ESI">
+            <summary>Sender of the message is in error passive mode (CAN FD)</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.FILE_TYPE_KME24">
+            <summary>KME file type, a binary file format representing log data.
+            Deprecated</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.FILE_TYPE_KME25">
+            <summary>KME file type, a binary file format representing log data.
+            Deprecated</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.FILE_TYPE_KME40">
+            <summary>KME file type, a binary file format representing log data.
+            Kvaser binary format (KME 4.0)</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.FILE_TYPE_KME50">
+            <summary>KME file type, a binary file format representing log data.
+            Kvaser binary format (KME 5.0)</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LDF_MAJOR_CAN">
+            <summary>Logged data format (LDF) version.
+            Used in Kvaser Memorator (2nd generation)</summary>
+        </member>
+        <member name="F:Kvaser.KvmLib.Kvmlib.LDF_MAJOR_CAN64">
+            <summary>Logged data format (LDF) version.
+            Used in Kvaser Memorator (2nd generation) with extended data capabilities.</summary>
+        </member>
+    </members>
+</doc>

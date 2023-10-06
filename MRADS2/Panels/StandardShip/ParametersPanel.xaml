@@ -1,0 +1,21 @@
+﻿<base:BasePanel x:Class="MRADS2.Panels.StandardShip.ParametersPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:base="clr-namespace:MRADS2.Panels"
+             xmlns:local="clr-namespace:MRADS2.Panels.StandardShip"
+             xmlns:viewmodels="clr-namespace:MRADS2.Ships.StandardShip"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:StandardShipVM}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DataGrid ItemsSource="{Binding CUParameters}" AutoGenerateColumns="False" HeadersVisibility="Column" CanUserDeleteRows="False" CanUserAddRows="false" CanUserSortColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Parameter" Binding="{Binding Name, Mode=OneWay}" Width="1.5*"/>
+                <DataGridTextColumn Header="Port Control Unit Value" Binding="{Binding Values[0].Value, Mode=OneWay}" Width="*"/>
+                <DataGridTextColumn Header="Starboard Control Unit Value" Binding="{Binding Values[1].Value, Mode=OneWay}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</base:BasePanel>

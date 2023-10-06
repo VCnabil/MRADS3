@@ -1,0 +1,96 @@
+﻿<base:BasePanel x:Class="MRADS2.Panels.StandardShip.VMUPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:base="clr-namespace:MRADS2.Panels"
+             xmlns:local="clr-namespace:MRADS2.Panels.StandardShip"
+             xmlns:controls="clr-namespace:MRADS2.Controls"
+             xmlns:viewmodels="clr-namespace:MRADS2.Ships.GenericViewModels"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:VMUVM}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="HeaderAlign" TargetType="Label">
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="StandardDataBox" TargetType="controls:DataBox">
+            <Setter Property="MinWidth" Value="100"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Grid.Column="0" Header="Slope Sensor">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Style="{StaticResource HeaderAlign}" Content="Roll (°)"/>
+                <controls:DataBox Grid.Row="0" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding RollAngle.Value}"/>
+                <Label Grid.Row="1" Style="{StaticResource HeaderAlign}" Content="Pitch (°)"/>
+                <controls:DataBox Grid.Row="1" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding PitchAngle.Value}"/>
+                <Label Grid.Row="2" Style="{StaticResource HeaderAlign}" Content="Latency (ms)"/>
+                <controls:DataBox Grid.Row="2" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding AngleLatency.Value}"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Column="1" Header="Angular Rate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Style="{StaticResource HeaderAlign}" Content="Roll (°/s)"/>
+                <controls:DataBox Grid.Row="0" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding RollRate.Value}"/>
+                <Label Grid.Row="1" Style="{StaticResource HeaderAlign}" Content="Pitch (°/s)"/>
+                <controls:DataBox Grid.Row="1" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding PitchRate.Value}"/>
+                <Label Grid.Row="2" Style="{StaticResource HeaderAlign}" Content="Yaw (°/s)"/>
+                <controls:DataBox Grid.Row="2" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding YawRate.Value}"/>
+                <Label Grid.Row="3" Style="{StaticResource HeaderAlign}" Content="Latency (ms)"/>
+                <controls:DataBox Grid.Row="3" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding RateLatency.Value}"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Column="2" Header="Acceleration Sensor">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Style="{StaticResource HeaderAlign}" Content="X-Axis (m/s²)"/>
+                <controls:DataBox Grid.Row="0" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding XAxisAcceleration.Value}"/>
+                <Label Grid.Row="1" Style="{StaticResource HeaderAlign}" Content="Y-Axis (m/s²)"/>
+                <controls:DataBox Grid.Row="1" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding YAxisAcceleration.Value}"/>
+                <Label Grid.Row="2" Style="{StaticResource HeaderAlign}" Content="Z-Axis (m/s²)"/>
+                <controls:DataBox Grid.Row="2" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding ZAxisAcceleration.Value}"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</base:BasePanel>

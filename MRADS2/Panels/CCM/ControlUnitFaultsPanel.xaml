@@ -1,0 +1,164 @@
+﻿<base:BasePanel x:Class="MRADS2.Panels.CCM.ControlUnitFaultsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:base="clr-namespace:MRADS2.Panels"
+             xmlns:local="clr-namespace:MRADS2.Panels.CCM"
+             xmlns:controls="clr-namespace:MRADS2.Controls"
+             xmlns:viewmodels="clr-namespace:MRADS2.Ships.CCM"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=viewmodels:CCMVM}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="HeaderAlign" TargetType="Label">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="StandardDataBox" TargetType="controls:DataBox">
+            <Setter Property="MinWidth" Value="75"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Header="Drive Control Unit">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width=".25*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Calibration"/>
+                <controls:DataBox Grid.Row="1" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.CalibrationFault.Value}"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="General Alarm"/>
+                <controls:DataBox Grid.Row="2" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.GeneralAlarm.Value}"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Dock Mode"/>
+                <controls:DataBox Grid.Row="3" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DockmodeFault.Value}"/>
+
+                <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Tiller"/>
+                <controls:DataBox Grid.Row="4" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.TillerFault.Value}"/>
+
+                <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="X-Axis Joystick"/>
+                <controls:DataBox Grid.Row="5" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.JoyXFault.Value}"/>
+
+                <Label Grid.Row="6" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Y-Axis Joystick"/>
+                <controls:DataBox Grid.Row="6" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.JoyYFault.Value}"/>
+
+                <Label Grid.Row="7" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Helm"/>
+                <controls:DataBox Grid.Row="7" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.HelmFault.Value}"/>
+
+                <Label Grid.Column="4" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Port"/>
+                <Label Grid.Column="5" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Starboard"/>
+
+                <Label Grid.Row="1" Grid.Column="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Trim Sensor"/>
+                <controls:DataBox Grid.Row="1" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DriveCUSide[0].TrimSensorFault.Value}"/>
+                <controls:DataBox Grid.Row="1" Grid.Column="5" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DriveCUSide[1].TrimSensorFault.Value}"/>
+
+                <Label Grid.Row="2" Grid.Column="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Steer Sensor"/>
+                <controls:DataBox Grid.Row="2" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DriveCUSide[0].SteerSensorFault.Value}"/>
+                <controls:DataBox Grid.Row="2" Grid.Column="5" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DriveCUSide[1].SteerSensorFault.Value}"/>
+
+                <Label Grid.Row="3" Grid.Column="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Trim NFU"/>
+                <controls:DataBox Grid.Row="3" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DriveCUSide[0].TrimNFUFault.Value}"/>
+                <controls:DataBox Grid.Row="3" Grid.Column="5" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DriveCUSide[1].TrimNFUFault.Value}"/>
+
+                <Label Grid.Row="4" Grid.Column="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Steer NFU"/>
+                <controls:DataBox Grid.Row="4" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DriveCUSide[0].SteerNFUFault.Value}"/>
+                <controls:DataBox Grid.Row="4" Grid.Column="5" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DriveCUSide[1].SteerNFUFault.Value}"/>
+
+                <Label Grid.Row="5" Grid.Column="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Drv. Trim Joy (Chair)"/>
+                <controls:DataBox Grid.Row="5" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DriveCUSide[0].NavigatorTrimJoystickFault.Value}"/>
+                <controls:DataBox Grid.Row="5" Grid.Column="5" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DriveCUSide[1].NavigatorTrimJoystickFault.Value}"/>
+
+                <Label Grid.Row="6" Grid.Column="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Drv. Trim Joy (Panel)"/>
+                <controls:DataBox Grid.Row="6" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DriveCUSide[0].ForwardPanelTrimJoystickFault.Value}"/>
+                <controls:DataBox Grid.Row="6" Grid.Column="5" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DriveCUSide[1].ForwardPanelTrimJoystickFault.Value}"/>
+
+                <Label Grid.Row="7" Grid.Column="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Throttle Lever"/>
+                <controls:DataBox Grid.Row="7" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DriveCUSide[0].LeverFault.Value}"/>
+                <controls:DataBox Grid.Row="7" Grid.Column="5" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DriveCUSide[1].LeverFault.Value}"/>
+            </Grid>
+        </GroupBox>
+        
+        <GroupBox Grid.Column="1" Header="Tab Control Unit">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width=".25*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Calibration"/>
+                <controls:DataBox Grid.Row="1" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.CalibrationFault.Value}"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="General Alarm"/>
+                <controls:DataBox Grid.Row="2" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.GeneralAlarm.Value}"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Trim Joy (Chair)"/>
+                <controls:DataBox Grid.Row="3" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.NavigatorTrimJoystickFault.Value}"/>
+
+                <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Roll Joy (Chair)"/>
+                <controls:DataBox Grid.Row="4" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.NavigatorRollJoystickFault.Value}"/>
+
+                <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Trim Joy (Panel)"/>
+                <controls:DataBox Grid.Row="5" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.ForwardPanelTrimJoystickFault.Value}"/>
+
+                <Label Grid.Row="6" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Roll Joy (Panel)"/>
+                <controls:DataBox Grid.Row="6" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.ForwardPanelRollJoystickFault.Value}"/>
+
+                <Label Grid.Row="7" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Tiller"/>
+                <controls:DataBox Grid.Row="7" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.TillerFault.Value}"/>
+
+                <Label Grid.Row="8" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Helm"/>
+                <controls:DataBox Grid.Row="8" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.HelmFault.Value}"/>
+
+                <Label Grid.Column="4" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Port"/>
+                <Label Grid.Column="5" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Starboard"/>
+
+                <Label Grid.Row="1" Grid.Column="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Tab Sensor"/>
+                <controls:DataBox Grid.Row="1" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.TabCUSide[0].TabSensorFault.Value}"/>
+                <controls:DataBox Grid.Row="1" Grid.Column="5" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.TabCUSide[1].TabSensorFault.Value}"/>
+
+                <Label Grid.Row="2" Grid.Column="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Tab NFU"/>
+                <controls:DataBox Grid.Row="2" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.TabCUSide[0].TabNFUFault.Value}"/>
+                <controls:DataBox Grid.Row="2" Grid.Column="5" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.TabCUSide[1].TabNFUFault.Value}"/>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</base:BasePanel>

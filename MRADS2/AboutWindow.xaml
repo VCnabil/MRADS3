@@ -1,0 +1,33 @@
+﻿<controls:ContentWindow x:Class="MRADS2.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MRADS2"
+        xmlns:controls="clr-namespace:MRADS2.Controls"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=local:AboutWindow}"
+        Title="About" Height="200" Width="600" WindowStyle="ToolWindow" ShowInTaskbar="False" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=local:AboutWindow, Mode=FindAncestor}}" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Image Source="vector logo.ico"/>
+        <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="16"/>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock Text="MRADS"/>
+            <TextBlock Text="{Binding Version}"/>
+            <TextBlock Text="Copyright © Vector Controls Inc. 2022"/>
+        </StackPanel>
+    </Grid>
+</controls:ContentWindow>

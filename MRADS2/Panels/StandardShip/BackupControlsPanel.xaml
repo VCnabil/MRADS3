@@ -1,0 +1,53 @@
+﻿<base:BasePanel x:Class="MRADS2.Panels.StandardShip.BackupControlsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:base="clr-namespace:MRADS2.Panels"
+             xmlns:local="clr-namespace:MRADS2.Panels.StandardShip"
+             xmlns:controls="clr-namespace:MRADS2.Controls"
+             xmlns:viewmodels="clr-namespace:MRADS2.Ships.StandardShip"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:StandardShipVM}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="HeaderAlign" TargetType="Label">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="StandardDataBox" TargetType="controls:DataBox">
+            <Setter Property="MinWidth" Value="100"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".5*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Port"/>
+        <Label Grid.Column="4" Grid.ColumnSpan="2" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Starboard"/>
+
+        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource HeaderAlign}" Content="Outboard"/>
+        <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource HeaderAlign}" Content="Inboard"/>
+        <Label Grid.Row="1" Grid.Column="4" Style="{StaticResource HeaderAlign}" Content="Inboard"/>
+        <Label Grid.Row="1" Grid.Column="5" Style="{StaticResource HeaderAlign}" Content="Outboard"/>
+
+        <Label Grid.Row="2" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" VerticalAlignment="Top" Content="State"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="1" Style="{StaticResource StandardDataBox}" VerticalAlignment="Top" Value="{Binding LCD.BackupAutoStatePortOutboard.Value}"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="2" Style="{StaticResource StandardDataBox}" VerticalAlignment="Top" Value="{Binding LCD.BackupAutoStatePortInboard.Value}"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="4" Style="{StaticResource StandardDataBox}" VerticalAlignment="Top" Value="{Binding LCD.BackupAutoStateStarboardInboard.Value}"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="5" Style="{StaticResource StandardDataBox}" VerticalAlignment="Top" Value="{Binding LCD.BackupAutoStateStarboardOutboard.Value}"/>
+    </Grid>
+</base:BasePanel>

@@ -1,0 +1,58 @@
+﻿<base:BasePanel x:Class="MRADS2.Panels.StandardShip.GPSPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:base="clr-namespace:MRADS2.Panels"
+             xmlns:local="clr-namespace:MRADS2.Panels.StandardShip"
+             xmlns:controls="clr-namespace:MRADS2.Controls"
+             xmlns:viewmodels="clr-namespace:MRADS2.Ships.GenericViewModels"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:GPSVM}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="HeaderAlign" TargetType="Label">
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="StandardDataBox" TargetType="controls:DataBox">
+            <Setter Property="MinWidth" Value="100"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Style="{StaticResource HeaderAlign}" Content="Heading (°)"/>
+        <controls:DataBox Grid.Row="0" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding Heading.Value}"/>
+
+        <Label Grid.Row="1" Style="{StaticResource HeaderAlign}" Content="Rate of Turn (°/s)"/>
+        <controls:DataBox Grid.Row="1" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding RateOfTurn.Value}"/>
+
+        <Label Grid.Row="2" Style="{StaticResource HeaderAlign}" Content="Speed Over Ground (kt)"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding SpeedOverGround.Value}"/>
+
+        <Label Grid.Row="3" Style="{StaticResource HeaderAlign}" Content="Course Over Ground (°)"/>
+        <controls:DataBox Grid.Row="3" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding CourseOverGround.Value}"/>
+
+        <Label Grid.Row="0" Grid.Column="3" Style="{StaticResource HeaderAlign}" Content="GPS Position"/>
+        <controls:DataBox Grid.Row="0" Grid.Column="4" Style="{StaticResource StandardDataBox}" MinWidth="150" Value="{Binding GPSPosition.Value}"/>
+
+        <Button Grid.Row="1" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Top" MinWidth="150" Content="Show in Google Maps" Click="GPSShow_Click"/>
+
+        <Label Grid.Row="3" Grid.Column="3" Style="{StaticResource HeaderAlign}" Content="GPS Date / Time (GMT)"/>
+        <controls:DataBox Grid.Row="4" Grid.Column="4" Style="{StaticResource StandardDataBox}" MinWidth="150" Value="{Binding GPSDateTime.Value}"/>
+    </Grid>
+</base:BasePanel>

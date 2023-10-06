@@ -1,0 +1,138 @@
+﻿<Window x:Class="MRADS2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MRADS2"
+        xmlns:panels="clr-namespace:MRADS2.Panels"
+        xmlns:controls="clr-namespace:MRADS2.Controls"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=local:MRADSDataVM}"
+        Title="MRADS" Height="768" Width="1366">
+    <Window.Resources>
+        <Style x:Key="ClickableListBox" TargetType="ListBoxItem">
+            <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
+        </Style>
+        
+        <local:ColorToBrushConverter x:Key="colorToBrushConverter"/>
+        <DataTemplate x:Key="ColoredListBox">
+            <TextBlock Text="{Binding .}" Foreground="{Binding Path=EventColor, Converter={StaticResource colorToBrushConverter}}"/>
+        </DataTemplate>
+
+        <ControlTemplate x:Key="PlayStopButton" TargetType="Button">
+            <Grid MaxHeight="25" MaxWidth="25">
+                <Rectangle x:Name="button" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding Foreground}" />
+                <Polygon Points="0,0 100,50 0,100" Stroke="Black" Fill="{TemplateBinding Foreground}" Stretch="Fill">
+                    <Polygon.RenderTransform>
+                        <ScaleTransform ScaleX=".5" ScaleY=".5" CenterX="12.5" CenterY="12.5"/>
+                    </Polygon.RenderTransform>
+                </Polygon>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Fill" TargetName="button" Value="AliceBlue"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Polygon x:Key="PlayButtonContent" Points="0,0 100,50 0,100" Stroke="Black" Fill="Gray" Stretch="Uniform">
+            <Polygon.RenderTransform>
+                <ScaleTransform ScaleX=".5" ScaleY=".5" CenterX="12.5" CenterY="12.5"/>
+            </Polygon.RenderTransform>
+        </Polygon>
+        <Grid x:Key="StopButtonContent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width=".5*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="1" Grid.Column="0" BorderBrush="Black" BorderThickness="1" Background="Gray" Width="4" HorizontalAlignment="Right"/>
+            <Border Grid.Row="1" Grid.Column="2" BorderBrush="Black" BorderThickness="1" Background="Gray" Width="4" HorizontalAlignment="Left"/>
+        </Grid>
+
+    </Window.Resources>
+    
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open..." Click="Open_Click"/>
+                <MenuItem Header="I_mport">
+                    <MenuItem Header="Import from SD Card..." Click="ImportSD_Click"/>
+                    <MenuItem Header="Import from CSV..." Click="ImportCSV_Click"/>
+                    <MenuItem Header="Import from Reach..." Click="ImportReach_Click"/>
+                </MenuItem>
+                <MenuItem Header="_Export" IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow, Mode=FindAncestor}, Path=FileOpen}">
+                    <MenuItem Header="Export Section..." Click="ExportSelection_Click"/>
+                    <MenuItem Header="Export Section as CSV..." Click="ExportCSV_Click"/>
+                    <MenuItem Header="Export CAN Messages..." Click="ExportCAN_Click"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="_Close File" IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow, Mode=FindAncestor}, Path=FileOpen}" Click="Close_Click"/>
+                <Separator/>
+                <MenuItem Header="E_xit" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Options">
+                <MenuItem Header="Show Voltages and Currents" DataContext="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow, Mode=FindAncestor}}" d:DataContext="{d:DesignInstance Type=local:MainWindow}" IsChecked="{Binding ShowVoltagesAndCurrents, Mode=OneWay}" IsEnabled="{Binding ShowVoltagesAndCurrentsEnabled, Mode=OneWay}" Click="ApplyScaling_Click"/>
+            </MenuItem>
+            <MenuItem Header="About" Click="About_Click"/>
+        </Menu>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".55*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <controls:ContentPanel Grid.Row="2" Grid.Column="0" Title="Events">
+                <TabControl>
+                    <TabItem Header="All">
+                        <ListBox ItemTemplate="{DynamicResource ColoredListBox}" x:Name="listAll" ItemsSource="{Binding AllEvents}" ItemContainerStyle="{StaticResource ClickableListBox}"/>
+                    </TabItem>
+                    <TabItem Header="Faults">
+                        <ListBox x:Name="listFaults" ItemsSource="{Binding FaultEvents}" ItemContainerStyle="{StaticResource ClickableListBox}"/>
+                    </TabItem>
+                    <TabItem Header="Warnings">
+                        <ListBox x:Name="listWarnings" ItemsSource="{Binding WarningEvents}" ItemContainerStyle="{StaticResource ClickableListBox}"/>
+                    </TabItem>
+                    <TabItem Header="Status">
+                        <ListBox x:Name="listStatus" ItemsSource="{Binding StatusEvents}" ItemContainerStyle="{StaticResource ClickableListBox}"/>
+                    </TabItem>
+                    <TabItem Header="Online/Offline">
+                        <ListBox x:Name="listOnlineOffline" ItemsSource="{Binding OnlineOfflineEvents}" ItemContainerStyle="{StaticResource ClickableListBox}"/>
+                    </TabItem>
+                </TabControl>
+            </controls:ContentPanel>
+            <controls:ContentPanel Grid.Row="0" Grid.ColumnSpan="2" Title="Graph">
+                <controls:MultiChart x:Name="Charts"/>
+            </controls:ContentPanel>
+            <controls:ContentPanel Grid.Row="1" Grid.ColumnSpan="2" Title="Time">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Slider Grid.Column="0" x:Name="sliderTime" VerticalAlignment="Center" Margin="5,5,5,5" Minimum="{Binding StartTimeSeconds}" Maximum="{Binding EndTimeSeconds}" Value="{Binding Path=TimeSeconds}"/>
+                    <Button Grid.Column="1" x:Name="btnPlayStop" Width="25" Height="25" DataContext="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow, Mode=FindAncestor}}" Content="{Binding PlayStopButtonContent}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" IsEnabled="{Binding FileOpen}" Click="PlayStop_Click"/>
+                    <!--<TextBox Grid.Column="2" Margin="5,5,5,5" FontSize="14" FontFamily="Lucida Console" HorizontalContentAlignment="Center" MinWidth="170" IsReadOnly="True" d:Text="2021-11-12 12:34:56.789" Text="{Binding Time, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss.fff}'}"/>-->
+                    <controls:TimeTextBox Grid.Column="2" Margin="5,5,5,5" FontSize="14" FontFamily="Lucida Console" Time="{Binding Time}"/>
+                </Grid>
+            </controls:ContentPanel>
+            <controls:ContentPanel Grid.Row="2" Grid.Column="1" Title="Data">
+                <TabControl x:Name="tabPanels"/>
+                <!--<local:ScrollTab x:Name="tabPanels"/>-->
+                <!--<controls:ScrollTab2 x:Name="tabPanels"/>-->
+            </controls:ContentPanel>
+        </Grid>
+    </DockPanel>
+</Window>

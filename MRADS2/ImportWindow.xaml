@@ -1,0 +1,91 @@
+﻿<Window x:Class="MRADS2.ImportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MRADS2"
+        xmlns:controls="clr-namespace:MRADS2.Controls"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=local:ImportWindow}"
+        Title="MRADS Data Import" Height="auto" Width="800" ResizeMode="NoResize" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+    <Grid Margin="5,5,5,5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="Time Interval">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                    <Label Content="Start Time"/>
+                    <DatePicker x:Name="dateStart" Margin="10,0,0,0" VerticalContentAlignment="Center" SelectedDate="{Binding StartDate}"/>
+                    <controls:TimeTextBox x:Name="timeStart" MinWidth="100" Margin="10,0,20,0" Selection="Time" MillisecondField="False" Time="{Binding StartTime}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal"  Margin="5,5,5,5">
+                    <Label Content="End Time"/>
+                    <DatePicker x:Name="dateEnd" Margin="10,0,0,0" VerticalContentAlignment="Center" SelectedDate="{Binding EndDate}"/>
+                    <controls:TimeTextBox x:Name="timeEnd" MinWidth="100" Margin="10,0,0,0" Selection="Time" MillisecondField="False" Time="{Binding EndTime}"/>
+                </StackPanel>
+
+                <ComboBox x:Name="cbTimeZone" Grid.Row="1" Grid.ColumnSpan="2" MaxWidth="400" Margin="5,5,5,5" SelectionChanged="cbTimeZone_SelectionChanged"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Row="1" Header="Events" Visibility="Collapsed">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <CheckBox x:Name="chkCapOnlyEvents" VerticalContentAlignment="Center" Content="Only capture selected events" IsChecked="{Binding OnlyCaptureSelectedEvents}"/>
+                    <Label Content="Capture Interval" Margin="50,0,0,0"/>
+                    <TextBox x:Name="txtCapInterval" Text="10" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="{Binding OnlyCaptureSelectedEvents}"/>
+                    <Label Content="Minutes"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <CheckBox x:Name="chkCapAll" Content="All" IsEnabled="False" Checked="chkCapAll_Checked" Unchecked="chkCapAll_Checked"/>
+                    <CheckBox x:Name="chkCapFaults" Content="Faults" IsEnabled="False"/>
+                    <CheckBox x:Name="chkCapWarnings" Content="Warnings" IsEnabled="False"/>
+                    <CheckBox x:Name="chkCapStatus" Content="Status" IsEnabled="False"/>
+                    <CheckBox x:Name="chkCapOnlineOffline" Content="Online/Offline" IsEnabled="False"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        
+        <GroupBox Grid.Row="2" Header="Output File">
+            <Grid Margin="5,5,5,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Margin="0,0,10,0" Width="486" Text="{Binding OutputFileName}"/>
+                <Button Grid.Column="1" x:Name="btnBrowse" Content="_Browse..." Click="btnBrowse_Click"/>
+            </Grid>
+        </GroupBox>
+        
+        <Grid Grid.Row="3" Margin="0,10,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="0" x:Name="btnImport" Content="_Import" MaxWidth="100" Click="btnImport_Click"/>
+            <Button Grid.Column="1" x:Name="btnCancel" Content="_Cancel" MaxWidth="100" Click="btnCancel_Click"/>
+        </Grid>
+        
+    </Grid>
+</Window>

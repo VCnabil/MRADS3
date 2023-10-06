@@ -1,0 +1,59 @@
+﻿<base:BasePanel x:Class="MRADS2.Panels.StandardShip.SepCombPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:base="clr-namespace:MRADS2.Panels"
+             xmlns:local="clr-namespace:MRADS2.Panels.StandardShip"
+             xmlns:controls="clr-namespace:MRADS2.Controls"
+             xmlns:viewmodels="clr-namespace:MRADS2.Ships.StandardShip"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:StandardShipVM}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="HeaderAlign" TargetType="Label">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="StandardDataBox" TargetType="controls:DataBox">
+            <Setter Property="MinWidth" Value="100"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".5*"/>
+            <RowDefinition Height=".5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Port Control Unit"/>
+        <Label Grid.Column="4" Grid.ColumnSpan="2" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Starboard Control Unit"/>
+
+        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource HeaderAlign}" Content="Analog Input"/>
+        <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource HeaderAlign}" Content="Switch State"/>
+        <Label Grid.Row="1" Grid.Column="4" Style="{StaticResource HeaderAlign}" Content="Analog Input"/>
+        <Label Grid.Row="1" Grid.Column="5" Style="{StaticResource HeaderAlign}" Content="Switch State"/>
+
+        <Label Grid.Row="2" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Separate / Combined"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding ControlUnits[0].CombinedSeparateAnalogInput.Value}"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="2" Style="{StaticResource StandardDataBox}" MinWidth="150" Value="{Binding ControlUnits[0].OnOffCombinedModeState.Value}"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding ControlUnits[1].CombinedSeparateAnalogInput.Value}"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="5" Style="{StaticResource StandardDataBox}" MinWidth="150" Value="{Binding ControlUnits[1].OnOffCombinedModeState.Value}"/>
+
+        <Label Grid.Row="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Port / Starboard Lever"/>
+        <controls:DataBox Grid.Row="3" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding ControlUnits[0].PortOrStbdLeverAnalogInput.Value}"/>
+        <controls:DataBox Grid.Row="3" Grid.Column="2" Style="{StaticResource StandardDataBox}" MinWidth="150" Value="{Binding ControlUnits[0].PortOrStbdLeverSwitchState.Value}"/>
+        <controls:DataBox Grid.Row="3" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding ControlUnits[1].PortOrStbdLeverAnalogInput.Value}"/>
+        <controls:DataBox Grid.Row="3" Grid.Column="5" Style="{StaticResource StandardDataBox}" MinWidth="150" Value="{Binding ControlUnits[1].PortOrStbdLeverSwitchState.Value}"/>
+    </Grid>
+</base:BasePanel>

@@ -1,0 +1,169 @@
+﻿<base:BasePanel x:Class="MRADS2.Panels.CCM.TimeoutFaultsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:base="clr-namespace:MRADS2.Panels"
+             xmlns:local="clr-namespace:MRADS2.Panels.CCM"
+             xmlns:controls="clr-namespace:MRADS2.Controls"
+             xmlns:viewmodels="clr-namespace:MRADS2.Ships.CCM"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=viewmodels:CCMVM}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="HeaderAlign" TargetType="Label">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="StandardDataBox" TargetType="controls:DataBox">
+            <Setter Property="MinWidth" Value="75"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height=".5*"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.RowSpan="2" Header="CAN Logger">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Murphy LCD"/>
+                <controls:DataBox Grid.Row="0" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding LCD.Timeout.Value}"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Drive Control Unit"/>
+                <controls:DataBox Grid.Row="1" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.Timeout.Value}"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Tab Control Unit"/>
+                <controls:DataBox Grid.Row="2" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.Timeout.Value}"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Fwd/Aft Panel Interface Module"/>
+                <controls:DataBox Grid.Row="3" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding PanelInterface.Timeout.Value}"/>
+
+                <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Clutch Controller"/>
+                <controls:DataBox Grid.Row="4" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding ClutchPanel.Timeout.Value}"/>
+
+                <Label Grid.Row="5" Grid.Column="1" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Port"/>
+                <Label Grid.Row="5" Grid.Column="2" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Starboard"/>
+
+                <Label Grid.Row="6" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Engine Controller"/>
+                <controls:DataBox Grid.Row="6" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding EngineControllers[0].Timeout.Value}"/>
+                <controls:DataBox Grid.Row="6" Grid.Column="2" Style="{StaticResource StandardDataBox}" Value="{Binding EngineControllers[1].Timeout.Value}"/>
+
+                <Label Grid.Row="7" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Engine"/>
+                <controls:DataBox Grid.Row="7" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding Engines[0].Timeout.Value}"/>
+                <controls:DataBox Grid.Row="7" Grid.Column="2" Style="{StaticResource StandardDataBox}" Value="{Binding Engines[1].Timeout.Value}"/>
+            </Grid>
+        </GroupBox>
+        
+        <GroupBox Grid.Column="1" Header="Drive Control Unit">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Murphy LCD"/>
+                <controls:DataBox Grid.Row="0" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.MurphyLCDCommunicationTimeout.Value}"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Clutch Controller"/>
+                <controls:DataBox Grid.Row="1" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.ClutchCommunicationTimeout.Value}"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="CAN Fault"/>
+                <controls:DataBox Grid.Row="2" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.CANFault.Value}"/>
+
+                <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Port"/>
+                <Label Grid.Row="3" Grid.Column="2" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Starboard"/>
+
+                <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Engine Controller"/>
+                <controls:DataBox Grid.Row="4" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.PortEngineControllerCommunicationTimeout.Value}"/>
+                <controls:DataBox Grid.Row="4" Grid.Column="2" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.StarboardEngineControllerCommunicationTimeout.Value}"/>
+
+                <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Engine"/>
+                <controls:DataBox Grid.Row="5" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.PortEngineCommunicationTimeout.Value}"/>
+                <controls:DataBox Grid.Row="5" Grid.Column="2" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.StarboardEngineCommunicationTimeout.Value}"/>
+            </Grid>
+        </GroupBox>
+        
+        <GroupBox Grid.Row="1" Grid.Column="1" Header="Clutch Panel">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Drive Control Unit"/>
+                <controls:DataBox Grid.Row="1" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding ClutchPanel.DriveControlUnitCommunicationTimeout.Value}"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Column="2" Header="Tab Control Unit">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Drive Control Unit"/>
+                <controls:DataBox Grid.Row="0" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.DriveControlUnitCommunicationTimeout.Value}"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Clutch Controller"/>
+                <controls:DataBox Grid.Row="1" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.ClutchCommunicationTimeout.Value}"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="CAN Fault"/>
+                <controls:DataBox Grid.Row="2" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.CANFault.Value}"/>
+
+                <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Port"/>
+                <Label Grid.Row="3" Grid.Column="2" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Starboard"/>
+
+                <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Engine Controller"/>
+                <controls:DataBox Grid.Row="4" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.PortEngineControllerCommunicationTimeout.Value}"/>
+                <controls:DataBox Grid.Row="4" Grid.Column="2" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.StarboardEngineControllerCommunicationTimeout.Value}"/>
+
+                <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Engine"/>
+                <controls:DataBox Grid.Row="5" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.PortEngineCommunicationTimeout.Value}"/>
+                <controls:DataBox Grid.Row="5" Grid.Column="2" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.StarboardEngineCommunicationTimeout.Value}"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</base:BasePanel>

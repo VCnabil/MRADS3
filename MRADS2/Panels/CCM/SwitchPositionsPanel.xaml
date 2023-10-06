@@ -1,0 +1,108 @@
+﻿<base:BasePanel x:Class="MRADS2.Panels.CCM.SwitchPositionsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:base="clr-namespace:MRADS2.Panels"
+             xmlns:local="clr-namespace:MRADS2.Panels.CCM"
+             xmlns:controls="clr-namespace:MRADS2.Controls"
+             xmlns:viewmodels="clr-namespace:MRADS2.Ships.CCM"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=viewmodels:CCMVM}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="HeaderAlign" TargetType="Label">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="HeaderAlign2" TargetType="Label">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+        </Style>
+        <Style x:Key="StandardDataBox" TargetType="controls:DataBox">
+            <Setter Property="MinWidth" Value="100"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="4" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Auto"/>
+        <Label Grid.Column="5" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Backup"/>
+        <Label Grid.Column="7" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Auto"/>
+        <Label Grid.Column="8" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Backup"/>
+
+        <Label Grid.Row="0" Style="{StaticResource HeaderAlign}" Content="Joystick/Tiller Station"/>
+        <controls:DataBox Grid.Row="1" Grid.Column="0" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.JoystickTillerStationSwitch.Value}"/>
+
+        <Label Grid.Row="2" Style="{StaticResource HeaderAlign}" Content="Throttle/Helm Station"/>
+        <controls:DataBox Grid.Row="3" Grid.Column="0" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.ThrottleHelmStationSwitch.Value}"/>
+
+        <Label Grid.Row="4" Style="{StaticResource HeaderAlign}" Content="Active Steering"/>
+        <controls:DataBox Grid.Row="5" Grid.Column="0" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.IntegratedSteeringSwitch.Value}"/>
+
+        <Label Grid.Row="6" Style="{StaticResource HeaderAlign}" Content="Clutch Internal/Manual"/>
+        <controls:DataBox Grid.Row="7" Grid.Column="0" Style="{StaticResource StandardDataBox}" Value="{Binding ClutchPanel.ManualSteeringSwitch.Value}"/>
+
+        <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource HeaderAlign}" Content="Troll On/Off"/>
+        <controls:DataBox Grid.Row="1" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding ClutchPanel.TrollingSwitch.Value}"/>
+
+        <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource HeaderAlign}" Content="Dock/Transit"/>
+        <controls:DataBox Grid.Row="3" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DockTransitSwitch.Value}"/>
+
+        <Label Grid.Row="4" Grid.Column="1" Style="{StaticResource HeaderAlign}" Content="Active Drive Trim"/>
+        <controls:DataBox Grid.Row="5" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.AutoTrimSwitch.Value}"/>
+
+        <Label Grid.Row="1" Grid.Column="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Port Engine"/>
+        <controls:DataBox Grid.Row="1" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding PanelInterface.PortEngineAutoBackupSwitch.Value}"/>
+        <controls:DataBox Grid.Row="1" Grid.Column="5" Style="{StaticResource StandardDataBox}" InvertBool="true" Value="{Binding PanelInterface.PortEngineAutoBackupSwitch.Value}"/>
+        
+        <Label Grid.Row="2" Grid.Column="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Port Steer"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding PanelInterface.PortSteerAutoBackupSwitch.Value}"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="5" Style="{StaticResource StandardDataBox}" InvertBool="true" Value="{Binding PanelInterface.PortSteerAutoBackupSwitch.Value}"/>
+        
+        <Label Grid.Row="3" Grid.Column="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Port Drive"/>
+        <controls:DataBox Grid.Row="3" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding PanelInterface.PortDriveAutoBackupSwitch.Value}"/>
+        <controls:DataBox Grid.Row="3" Grid.Column="5" Style="{StaticResource StandardDataBox}" InvertBool="true" Value="{Binding PanelInterface.PortDriveAutoBackupSwitch.Value}"/>
+        
+        <Label Grid.Row="4" Grid.Column="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Starboard Engine"/>
+        <controls:DataBox Grid.Row="4" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding PanelInterface.StarboardEngineAutoBackupSwitch.Value}"/>
+        <controls:DataBox Grid.Row="4" Grid.Column="5" Style="{StaticResource StandardDataBox}" InvertBool="true" Value="{Binding PanelInterface.StarboardEngineAutoBackupSwitch.Value}"/>
+        
+        <Label Grid.Row="5" Grid.Column="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Starboard Steer"/>
+        <controls:DataBox Grid.Row="5" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding PanelInterface.StarboardSteerAutoBackupSwitch.Value}"/>
+        <controls:DataBox Grid.Row="5" Grid.Column="5" Style="{StaticResource StandardDataBox}" InvertBool="true" Value="{Binding PanelInterface.StarboardSteerAutoBackupSwitch.Value}"/>
+        
+        <Label Grid.Row="6" Grid.Column="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Starboard Drive"/>
+        <controls:DataBox Grid.Row="6" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding PanelInterface.StarboardDriveAutoBackupSwitch.Value}"/>
+        <controls:DataBox Grid.Row="6" Grid.Column="5" Style="{StaticResource StandardDataBox}" InvertBool="true" Value="{Binding PanelInterface.StarboardDriveAutoBackupSwitch.Value}"/>
+        
+        <Label Grid.Row="1" Grid.Column="6" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Clutch"/>
+        <controls:DataBox Grid.Row="1" Grid.Column="7" Style="{StaticResource StandardDataBox}" Value="{Binding ClutchPanel.AutoBackupSwitch.Value}"/>
+        <controls:DataBox Grid.Row="1" Grid.Column="8" Style="{StaticResource StandardDataBox}" InvertBool="true" Value="{Binding ClutchPanel.AutoBackupSwitch.Value}"/>
+        
+        <Label Grid.Row="2" Grid.Column="6" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Tab"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="7" Style="{StaticResource StandardDataBox}" Value="{Binding PanelInterface.TabAutoBackupSwitch.Value}"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="8" Style="{StaticResource StandardDataBox}" InvertBool="true" Value="{Binding PanelInterface.TabAutoBackupSwitch.Value}"/>
+    </Grid>
+</base:BasePanel>
