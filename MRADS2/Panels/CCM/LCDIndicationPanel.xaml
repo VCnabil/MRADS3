@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:MRADS2.Panels.CCM"
              xmlns:controls="clr-namespace:MRADS2.Controls"
              xmlns:viewmodels="clr-namespace:MRADS2.Ships.CCM"
+             xmlns:LengthConverter="clr-namespace:MRADS2.Controls"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewmodels:CCMVM}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -36,6 +37,7 @@
             <controls:RotaryGaugeZoneConfig StartAngle="135" EndAngle="180" Length="9" Radius="1" Color="Red"/>
             <controls:RotaryGaugeZoneConfig StartAngle="180" EndAngle="225" Length="9" Radius="1" Color="Lime"/>
         </x:Array>
+        <!--<LengthConverter:LengthConverter x:Key="LengthConverter"/>-->
     </UserControl.Resources>
 
     <Grid>
