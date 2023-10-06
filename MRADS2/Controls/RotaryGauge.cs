@@ -81,6 +81,14 @@ namespace MRADS2.Controls
 
         public static readonly DependencyProperty NeedleProperty = DependencyProperty.Register("Needle", typeof(NeedleConfig), typeof(RotaryGauge),
             new FrameworkPropertyMetadata(new NeedleConfig() { LengthInside = 1, OverlapTicks = false, LengthOutside = 10, WidthBase = 6, WidthMiddle = 6, WidthEnd = 2, Color = Colors.Red }, RenderPropChanged));
+        
+        public static readonly DependencyProperty TickLengthProperty = DependencyProperty.Register("TickLength", typeof(double), typeof(RotaryGauge), new PropertyMetadata(10.0));
+
+        public double TickLength
+        {
+            get { return (double)GetValue(TickLengthProperty); }
+            set { SetValue(TickLengthProperty, value); }
+        }
         public NeedleConfig Needle
         {
             get { return (NeedleConfig)GetValue(NeedleProperty); }
@@ -344,14 +352,16 @@ namespace MRADS2.Controls
 
             angledelta = (angleend - anglestart) / (ticks.Count - 1) * Math.PI / 180;
             angle = anglestart * Math.PI / 180;
-
+            double dynamicLength = this.TickLength;
             for (i = 0; i < ticks.Count; i++, angle += angledelta)
             {
                 p1.X = Radius * Math.Cos(angle);
                 p1.Y = Radius * Math.Sin(angle);
 
-                p2.X = (Radius - ticks.Length) * Math.Cos(angle);
-                p2.Y = (Radius - ticks.Length) * Math.Sin(angle);
+                //  p2.X = (Radius - ticks.Length) * Math.Cos(angle);
+                p2.X = (Radius - dynamicLength) * Math.Cos(angle);
+                //p2.Y = (Radius - ticks.Length) * Math.Sin(angle);
+                p2.Y = (Radius - dynamicLength) * Math.Sin(angle);
 
                 dc.DrawLine(pen, Transform(p1), Transform(p2));
             }
