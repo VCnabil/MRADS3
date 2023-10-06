@@ -60,10 +60,11 @@
 
         <Label Grid.Row="1" Content="STEER" HorizontalAlignment="Center" Margin="0,0,0,10"/>
         <!--<controls:RotaryGauge Grid.Row="2" MinWidth="50" MinHeight="50" TickMarkAngleStart="-45" TickMarkAngleEnd="-135" Value="{Binding DriveCU.DriveCUSide[0].DriveSteerFeedbackScaled.Value, Converter={StaticResource barValueConverter}}" Zones="{StaticResource SteerZones}"/>-->
-        <controls:RotaryGauge Grid.Row="2" Grid.Column="0" MinWidth="50" MinHeight="50" TickMarkAngleStart="-45" TickMarkAngleEnd="-135" Value="{Binding DriveCU.DriveCUSide[0].DriveSteerFeedbackScaled.Value, Converter={StaticResource barValueConverter}}" Zones="{StaticResource SteerZones}">
-            <controls:RotaryGauge.MajorTicks>
-                <controls:TickConfig Length="{Binding ElementName=MainGrid, Path=ActualWidth, Converter={StaticResource LengthConverter}}" />
-            </controls:RotaryGauge.MajorTicks>
+        <controls:RotaryGauge Grid.Row="2" Grid.Column="0" MinWidth="50" MinHeight="50" 
+                      TickMarkAngleStart="-45" TickMarkAngleEnd="-135" 
+                      Value="{Binding DriveCU.DriveCUSide[0].DriveSteerFeedbackScaled.Value, Converter={StaticResource barValueConverter}}" 
+                      Zones="{StaticResource SteerZones}"
+                      TickLength="{Binding ElementName=MainGrid, Path=ActualWidth, Converter={StaticResource LengthConverter}}">
         </controls:RotaryGauge>
         <Label Grid.Row="2" Content="{Binding DriveCU.DriveCUSide[0].DriveSteerFeedbackScaled.Value, Converter={StaticResource gaugeValueConverter}}" d:Content="60" FontSize="18" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         

@@ -22,4 +22,10 @@ namespace MRADS2.Controls
             throw new NotImplementedException();
         }
     }
+
+    public class TickConfig
+    {
+        public double Length { get; set; }
+        
+    }
 }
