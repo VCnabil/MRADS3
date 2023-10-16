@@ -60,9 +60,10 @@
 
         <Label Grid.Row="1" Content="STEER" HorizontalAlignment="Center" Margin="0,0,0,10"/>
         <controls:RotaryGauge Grid.Row="2" MinWidth="50" MinHeight="50"
-                              TickMarkAngleStart="-45" TickMarkAngleEnd="-135"
-                              Value="{Binding DriveCU.DriveCUSide[0].DriveSteerFeedbackScaled.Value, Converter={StaticResource barValueConverter}}"
-                              Zones="{StaticResource SteerZones}"/>
+                      TickMarkAngleStart="-45" TickMarkAngleEnd="-135"
+                      Value="{Binding DriveCU.DriveCUSide[0].DriveSteerFeedbackScaled.Value, Converter={StaticResource barValueConverter}}"
+                      Zones="{StaticResource SteerZones}"
+                      TickWidth="{Binding ActualWidth, ElementName=ParentGrid, Converter={StaticResource lengthConverter}}"/>
         <Label Grid.Row="2" Content="{Binding DriveCU.DriveCUSide[0].DriveSteerFeedbackScaled.Value, Converter={StaticResource gaugeValueConverter}}"
                d:Content="60" FontSize="18" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         
