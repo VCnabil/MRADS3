@@ -26,6 +26,7 @@ namespace MRADS2.Controls
     public class TickConfig
     {
         public double Length { get; set; }
-        
+        public double Width { get; set; }
+
     }
 }
