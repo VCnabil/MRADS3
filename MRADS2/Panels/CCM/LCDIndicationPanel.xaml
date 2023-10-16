@@ -40,7 +40,7 @@
         <controls:LengthConverter x:Key="LengthConverter"/>
     </UserControl.Resources>
 
-    <Grid x:Name="MainGrid">
+    <Grid x:Name="ParentGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -63,7 +63,8 @@
                       TickMarkAngleStart="-45" TickMarkAngleEnd="-135"
                       Value="{Binding DriveCU.DriveCUSide[0].DriveSteerFeedbackScaled.Value, Converter={StaticResource barValueConverter}}"
                       Zones="{StaticResource SteerZones}"
-                      TickWidth="{Binding ActualWidth, ElementName=ParentGrid, Converter={StaticResource lengthConverter}}"/>
+                      TickWidth="{Binding TickConfiguration.MyTickWidth}">
+        </controls:RotaryGauge>
         <Label Grid.Row="2" Content="{Binding DriveCU.DriveCUSide[0].DriveSteerFeedbackScaled.Value, Converter={StaticResource gaugeValueConverter}}"
                d:Content="60" FontSize="18" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         
