@@ -81,6 +81,13 @@ namespace MRADS2.Controls
 
         public static readonly DependencyProperty NeedleProperty = DependencyProperty.Register("Needle", typeof(NeedleConfig), typeof(RotaryGauge),
             new FrameworkPropertyMetadata(new NeedleConfig() { LengthInside = 1, OverlapTicks = false, LengthOutside = 10, WidthBase = 6, WidthMiddle = 6, WidthEnd = 2, Color = Colors.Red }, RenderPropChanged));
+        
+        public static readonly DependencyProperty TickWidthProperty = DependencyProperty.Register("TickWidth", typeof(double), typeof(RotaryGauge), new PropertyMetadata(10.0));
+        public double TickWidth
+        {
+            get { return (double)GetValue(TickWidthProperty); }
+            set { SetValue(TickWidthProperty, value); }
+        }
         public NeedleConfig Needle
         {
             get { return (NeedleConfig)GetValue(NeedleProperty); }
@@ -340,7 +347,8 @@ namespace MRADS2.Controls
             int i;
             double angle, angledelta;
             Point p1, p2;
-            Pen pen = new Pen(Brushes.Black, ticks.Width);
+            double dynamicWidth = this.TickWidth;
+            Pen pen = new Pen(Brushes.Black, dynamicWidth);
 
             angledelta = (angleend - anglestart) / (ticks.Count - 1) * Math.PI / 180;
             angle = anglestart * Math.PI / 180;
