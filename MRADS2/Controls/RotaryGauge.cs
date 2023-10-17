@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -82,6 +83,7 @@ namespace MRADS2.Controls
         public static readonly DependencyProperty NeedleProperty = DependencyProperty.Register("Needle", typeof(NeedleConfig), typeof(RotaryGauge),
             new FrameworkPropertyMetadata(new NeedleConfig() { LengthInside = 1, OverlapTicks = false, LengthOutside = 10, WidthBase = 6, WidthMiddle = 6, WidthEnd = 2, Color = Colors.Red }, RenderPropChanged));
         
+ 
         public static readonly DependencyProperty TickLengthProperty = DependencyProperty.Register("TickLength", typeof(double), typeof(RotaryGauge), new PropertyMetadata(10.0));
 
         public double TickLength
@@ -96,6 +98,7 @@ namespace MRADS2.Controls
         {
             get { return (double)GetValue(TickWidthhProperty); }
             set { SetValue(TickWidthhProperty, value); }
+ 
         }
         public NeedleConfig Needle
         {
@@ -356,7 +359,9 @@ namespace MRADS2.Controls
             int i;
             double angle, angledelta;
             Point p1, p2;
+ 
             double dynamicWidth = this.TickWidthh;
+ 
             Pen pen = new Pen(Brushes.Black, dynamicWidth);
 
             angledelta = (angleend - anglestart) / (ticks.Count - 1) * Math.PI / 180;
@@ -439,12 +444,37 @@ namespace MRADS2.Controls
             dc.DrawDrawing(needle);
         }
 
-        public class TickConfig
+        public class TickConfig : INotifyPropertyChanged
         {
+            private double _myTickWidth;
+            public double MyTickWidth
+            {
+                get { return _myTickWidth; }
+                set
+                {
+                    if (_myTickWidth != value)
+                    {
+                        _myTickWidth = value;
+                        OnPropertyChanged(nameof(MyTickWidth));
+                    }
+                }
+            }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            protected virtual void OnPropertyChanged(string propertyName)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+
+       
             public int Count { get; set; }
             public double Length { get; set; }
             public double Width { get; set; }
+
+
         }
+    
 
         public class HubConfig
         {

@@ -30,6 +30,7 @@ namespace MRADS2.Panels.CCM
         }
 
         public override string HeaderText => "LCD Indication";
+      //  public TickConfig TickConfiguration { get; set; } = new TickConfig();
     }
 
     public class BarValueConverter : IValueConverter
