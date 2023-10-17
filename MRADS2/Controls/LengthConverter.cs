@@ -13,7 +13,7 @@ namespace MRADS2.Controls
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             double actualWidth = (double)value;
-            return actualWidth * 0.002; // factor
+            return actualWidth * 0.001; // factor
 
         }
 
