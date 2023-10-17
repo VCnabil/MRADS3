@@ -458,6 +458,7 @@ namespace MRADS2.Controls
 
 
         }
+    
 
         public class HubConfig
         {
