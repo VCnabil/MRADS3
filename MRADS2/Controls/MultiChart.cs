@@ -484,7 +484,7 @@ namespace MRADS2.Controls
             double width = ActualWidth - (PlotMargin.Left + PlotMargin.Right);
             Pen pen = new Pen(Brushes.Gray, 1);
             Point p1, p2;
-            int tickwidth = 5;
+            int tickwidth = 5;//NABZ
 
             p1.X = PlotMargin.Left;
             p1.Y = 0;
