@@ -175,8 +175,8 @@ namespace MRADS2.Ships.StandardShip
 
             decoder = CP.AddPGN(0xff33);
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool(prefix1 + "ClutchPanelEngagedLEDState", 0, 0));
-            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool(prefix1 + "ClutchPanelBackflushLEDState", 2, 0));
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool(prefix2 + "ClutchPanelEngagedLEDState", 1, 0));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool(prefix1 + "ClutchPanelBackflushLEDState", 2, 0));
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool(prefix2 + "ClutchPanelBackflushLEDState", 3, 0));
         }
 

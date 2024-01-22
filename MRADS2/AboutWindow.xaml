@@ -27,7 +27,7 @@
             </StackPanel.Resources>
             <TextBlock Text="MRADS"/>
             <TextBlock Text="{Binding Version}"/>
-            <TextBlock Text="Copyright © Vector Controls Inc. 2022"/>
+            <TextBlock Text="Copyright © Vector Controls Inc. 2023"/>
         </StackPanel>
     </Grid>
 </controls:ContentWindow>

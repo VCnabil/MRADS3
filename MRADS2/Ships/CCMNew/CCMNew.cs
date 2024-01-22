@@ -71,13 +71,13 @@ namespace MRADS2.Ships.CCMNew
             PGNDecoder decoder;
 
             decoder = skim.AddPGN(0xff21);
-            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("TabAutoBackupSwitch", d => (d[0] & 0x80) == 0));
-            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("PortSteerAutoBackupSwitch", d => (d[0] & 0x02) != 0));
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("PortDriveAutoBackupSwitch", d => (d[0] & 0x01) != 0));
-            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("PortEngineAutoBackupSwitch", d => (d[0] & 0x10) == 0));
-            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("StbdSteerAutoBackupSwitch", d => (d[0] & 0x08) != 0));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("PortSteerAutoBackupSwitch", d => (d[0] & 0x02) != 0));
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("StbdDriveAutoBackupSwitch", d => (d[0] & 0x04) != 0));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("StbdSteerAutoBackupSwitch", d => (d[0] & 0x08) != 0));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("PortEngineAutoBackupSwitch", d => (d[0] & 0x10) == 0));
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("StbdEngineAutoBackupSwitch", d => (d[0] & 0x20) == 0));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("TabAutoBackupSwitch", d => (d[0] & 0x80) == 0));
         }
 
         MRADSDataProvider InitGPS(string name, int channel)
