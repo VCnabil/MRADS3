@@ -37,7 +37,7 @@ namespace MRADS2.Ships.CCMNew
             ret.Add(new VersionsPanel(vmdata, shipvm));
             ret.Add(new ControlUnitOutputsPanel(vmdata, shipvm));
             ret.Add(new Panels.StandardShip.VMUPanel(vmdata, shipvm.VMU));
-            //ret.Add(new Panels.StandardShip.GPSPanel(vmdata, shipvm.GPS));
+            ret.Add(new Panels.StandardShip.GPSPanel(vmdata, shipvm.GPS));
             ret.Add(new PDMInputsPanel(vmdata, shipvm));
             ret.Add(new PDMOutputsPanel(vmdata, shipvm));
             ret.Add(new VariableList(vmdata));
@@ -47,7 +47,7 @@ namespace MRADS2.Ships.CCMNew
 
         protected override void InitShip()
         {
-            //InitGPS("GPS", 1);
+            InitGPS("GPS", 1);
             InitVMU("VMU", 1);
 
             InitEngine("Port Engine", 0x00, 4);

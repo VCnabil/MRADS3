@@ -17,7 +17,7 @@ namespace MRADS2.Ships.CCMNew
 
         public CCMNewVM(MRADSDataVM datavm, MRADSShipConfig config) : base(datavm, config, false)
         {
-            //GPS = new GPSVM();
+            GPS = new GPSVM();
             VMU = new VMUVM();
         }
     }

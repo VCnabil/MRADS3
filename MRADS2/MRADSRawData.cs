@@ -181,7 +181,38 @@ namespace MRADS2
         }
 
         const int chunksize = 256;
+        string ReadLine2()
+        {
+            List<byte> byteBuffer = new List<byte>();
+            byte[] buf = new byte[chunksize];
+            bool foundNewLine = false;
 
+            while (!foundNewLine)
+            {
+                int len = fs.Read(buf, 0, chunksize);
+                if (len == 0)
+                {
+                    if (byteBuffer.Count == 0)
+                        return null; // End of file and no data in buffer
+                    else
+                        break; // End of file but we have some data in buffer
+                }
+
+                for (int i = 0; i < len; i++)
+                {
+                    byteBuffer.Add(buf[i]);
+                    if (buf[i] == '\n')
+                    {
+                        foundNewLine = true;
+                        fs.Seek(-(len - (i + 1)), SeekOrigin.Current); // Move back the read pointer after the newline
+                        break;
+                    }
+                }
+            }
+
+            byte[] lineBytes = byteBuffer.ToArray();
+            return Encoding.ASCII.GetString(lineBytes).Trim();
+        }
         string ReadLine()
         {
             byte[] buf = new byte[chunksize];

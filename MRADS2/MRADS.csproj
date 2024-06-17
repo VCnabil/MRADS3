@@ -48,6 +48,9 @@
     <None Update="kvmlib.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Samples\tempEmpty.csv">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
     <None Update="Samples\gen_alarm_test.csv">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>

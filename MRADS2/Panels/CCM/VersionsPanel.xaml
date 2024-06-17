@@ -31,6 +31,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
 
         <Label Grid.Row="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Drive Control Unit SW Version"/>
         <controls:DataBox Grid.Row="0" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.SoftwareVersion.Value}"/>

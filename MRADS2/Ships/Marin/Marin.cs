@@ -39,7 +39,7 @@ namespace MRADS2.Ships
 
         protected override bool CheckShipID(MRADSShip ship)
         {
-            return (false);
+            return (true);
         }
     }
 }
