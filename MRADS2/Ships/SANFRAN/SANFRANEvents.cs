@@ -30,85 +30,19 @@ namespace MRADS.Ships.SANFRAN
         }
         void AddMainCUFault(string variable, string description = null)
         {
-            if (description == null)
-                description = FaultDescription(variable);
-
-            AddFault(ship.ControlUnits[0].Name, variable, description);
+       
         }
         void add_AM1_Faults(string variable, string description = null)
         {
-            if (description == null)
-                description = FaultDescription(variable);
-
-            AddFault(ship.ControlUnits[1].Name, variable, description);
+        
         }
         void AddClutchFault(string variable, string description = null)
         {
-            if (description == null)
-                description = FaultDescription(variable);
-
-            AddFault(ship.ClutchPanels[0].Name, variable, description);
+         
         }
         void AddFaults()
         {
-            AddMainCUFault("PortEngineCommunicationTimeout");
-            AddMainCUFault("StbdEngineCommunicationTimeout");
-            AddMainCUFault("PortEngineControllerCommunicationTimeout");
-            AddMainCUFault("StbdEngineControllerCommunicationTimeout");
-            AddMainCUFault("MurphyLCDCommunicationTimeout");
-            AddMainCUFault("CalibrationFault");
-            AddMainCUFault("GeneralAlarm");
-            AddMainCUFault("CANFault");
-            //AddMainCUFault("DockmodeFault");
-            //AddMainCUFault("ClutchCommunicationTimeout");
-            //AddMainCUFault("StbdTrimNFUFault");
-            //AddMainCUFault("StbdSteerNFUFault");
-            //AddMainCUFault("PortTrimNFUFault");
-            //AddMainCUFault("PortSteerNFUFault");
-            //AddMainCUFault("StbdTrimSensorFault");
-            //AddMainCUFault("StbdSteerSensorFault");
-            //AddMainCUFault("PortTrimSensorFault");
-            //AddMainCUFault("PortSteerSensorFault");
-            //AddMainCUFault("PortLeverFault");
-            //AddMainCUFault("StbdLeverFault");
-            //AddMainCUFault("FwdPanelPortTrimJoystickFault");
-            //AddMainCUFault("FwdPanelStbdTrimJoystickFault");
-            //AddMainCUFault("HelmFault");
-            //AddMainCUFault("TillerFault");
-            //AddMainCUFault("JoyXFault");
-            //AddMainCUFault("JoyYFault");
-            //AddMainCUFault("NavigatorPortTrimJoystickFault");
-            //AddMainCUFault("NavigatorStbdTrimJoystickFault");
-            //AddMainCUFault("DockmodeFaultDueToSensorFault");
-            //AddMainCUFault("DockmodeFaultDueToOFFTrollingSwitch");
-            //AddMainCUFault("DockmodeFaultDueToLowRPM");
-            //AddMainCUFault("DockmodeFaultDueToJoyXFault");
-            //AddMainCUFault("DockmodeFaultDueToEngineCommunication");
-            //AddMainCUFault("DockmodeFaultDueToEngineControllerCommunication");
-            //AddMainCUFault("DockmodeFaultDueToClutchCommunication");
-            //AddMainCUFault("DockmodeFaultDueToTillerFault");
-
-            //add_AM1_Faults("DriveControlUnitCommunicationTimeout");
-            //add_AM1_Faults("ClutchCommunicationTimeout");
-            //add_AM1_Faults("PortEngineCommunicationTimeout");
-            //add_AM1_Faults("StbdEngineCommunicationTimeout");
-            //add_AM1_Faults("PortEngineControllerCommunicationTimeout");
-            //add_AM1_Faults("StbdEngineControllerCommunicationTimeout");
-            //add_AM1_Faults("PortTabNFUFault");
-            //add_AM1_Faults("StbdTabNFUFault");
-            //add_AM1_Faults("PortTabSensorFault");
-            //add_AM1_Faults("StbdTabSensorFault");
-            //add_AM1_Faults("FwdPanelTrimJoystickFault");
-            //add_AM1_Faults("FwdPanelRollJoystickFault");
-            //add_AM1_Faults("NavigatorStationTrimJoystickFault");
-            //add_AM1_Faults("NavigatorStationRollJoystickFault");
-            //add_AM1_Faults("TillerFault");
-            //add_AM1_Faults("HelmFault");
-            //add_AM1_Faults("CalibrationFault");
-            //add_AM1_Faults("GeneralAlarm");
-            //add_AM1_Faults("CANFault");
-
-            AddClutchFault("DriveControlUnitCommunicationTimeout");
+           
         }
     }
     public class SANFRANVariableChangedEvent : StandardVariableChangeEvent
