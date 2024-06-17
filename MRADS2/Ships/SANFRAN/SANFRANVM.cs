@@ -33,7 +33,7 @@ namespace MRADS.Ships.SANFRAN
 
         public BindVariable ThrottleAnalogInput { get; private set; }
 
-          public SANFRANVM(MRADSDataVM datavm, MRADSShipConfig config, bool oldvmu = true) : base(datavm)
+        public SANFRANVM(MRADSDataVM datavm, MRADSShipConfig config, bool oldvmu = true) : base(datavm)
         {
 
             GPS = new GPSVM();
