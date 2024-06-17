@@ -19,9 +19,9 @@ namespace MRADS2.Panels.SF
     /// <summary>
     /// Interaction logic for VersionsPanel.xaml
     /// </summary>
-    public partial class VP : BasePanel
+    public partial class SF_Pannel_A : BasePanel
     {
-        public VP(MRADSDataVM vmdata, DefaultBindVM vmship) : base(vmdata, vmship)
+        public SF_Pannel_A(MRADSDataVM vmdata, DefaultBindVM vmship) : base(vmdata, vmship)
         {
             InitializeComponent();
         }

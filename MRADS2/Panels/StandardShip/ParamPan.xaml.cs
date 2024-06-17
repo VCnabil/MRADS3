@@ -14,18 +14,18 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MRADS2.Ships.ViewModel;
 
-namespace MRADS2.Panels.SF
+namespace MRADS2.Panels.StandardShip
 {
     /// <summary>
-    /// Interaction logic for VersionsPanel.xaml
+    /// Interaction logic for ParametersPanel.xaml
     /// </summary>
-    public partial class VP : BasePanel
+    public partial class ParmPan : BasePanel
     {
-        public VP(MRADSDataVM vmdata, DefaultBindVM vmship) : base(vmdata, vmship)
+        public ParmPan(MRADSDataVM vmdata, DefaultBindVM vmship) : base(vmdata, vmship)
         {
             InitializeComponent();
         }
 
-        public override string HeaderText => "Versions";
+        public override string HeaderText => "Parameters";
     }
 }
