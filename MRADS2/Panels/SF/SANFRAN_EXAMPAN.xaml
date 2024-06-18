@@ -31,6 +31,9 @@
         </Grid.RowDefinitions>
         <Label  Grid.Row="1" Grid.Column="0"  Content="SW version" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
         <controls:DataBox Grid.Row="2" Grid.Column="0" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.SoftwareVersion.Value}"/>
+
+        <Label  Grid.Row="1" Grid.Column="2"  Content="eng1 rpm" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="2" Style="{StaticResource StandardDataBox}" Value="{Binding MainEngine.Eng_1_RPM.Value}"/>
     </Grid>
 
 </base:BasePanel>

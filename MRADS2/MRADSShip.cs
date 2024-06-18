@@ -171,7 +171,7 @@ namespace MRADS2
             {
                 msg = source.ReadNext();
                 if (msg == null)
-                    continue;
+                    break;
 
                 foreach (var ship in ships)
                 {
