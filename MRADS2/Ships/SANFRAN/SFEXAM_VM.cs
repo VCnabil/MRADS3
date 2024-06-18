@@ -14,23 +14,23 @@ namespace MRADS.Ships.SANFRAN
 {
     public class SFEXAM_VM : DataVMProvider, DefaultBindVM
     {
-        /*
+
         public MAIN_CUVM MainCU { get; }
         public EngineVM MainEngine { get; }
 
         public Skim80VM MainSkim80 { get; }
-        public Skim81VM MainSkim81 { get; }*/
+        public Skim81VM MainSkim81 { get; }
 
         public SFEXAM_VM(MRADSDataVM vmdata ,MRADSShipConfig config, bool oldvmu = true) : base(vmdata)
         {
-          /*  MainCU = new MAIN_CUVM(vmdata.Ship.ControlUnits[0]);
+            MainCU = new MAIN_CUVM(vmdata.Ship.ControlUnits[0]);
             MainEngine = new EngineVM(config.GetProvider("MyEngine"));
             MainSkim80 = new Skim80VM(config.GetProvider("MySkim80"));
-            MainSkim81 = new Skim81VM(config.GetProvider("MySkim81"));*/
+            MainSkim81 = new Skim81VM(config.GetProvider("MySkim81"));
 
         }
     }
-    /*
+     
 
     public class MAIN_CUVM : DefaultBindVM
     {
@@ -106,5 +106,5 @@ namespace MRADS.Ships.SANFRAN
         }
     }
 
-    */
+   
 }
