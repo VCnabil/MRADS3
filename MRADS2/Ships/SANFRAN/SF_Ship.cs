@@ -69,32 +69,30 @@ namespace MRADS.Ships.SANFRAN
             //decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("Engine2RPM", d => (d[7] << 5) | (d[6] >> 3)));
 
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("Engine1RPM", d => (d[5] << 8) | d[4]));
-            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("Engine2RPM", d => (d[7] << 8) | d[6]));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("Engine2RPM", d => (d[7] << 8) | d[6]));           
+        }
 
+        //at address 80 
+        protected void Init_Skim80(string name, byte source, int channel) {
+            MRADSDataProvider skimer_80 = Config.CreateProvider(name, source, channel);
+            PGNDecoder skimerdecoder_80;
+            skimerdecoder_80 = skimer_80.AddPGN(0xffa2);
+            skimerdecoder_80.AddVariableDefinition(MRADSVariableDefinition.CreateInt("skim80rpm", d => (d[1] << 8) | d[0]));
 
-            //decoder = engine.AddPGN(0xf005);
-            //decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("CurrentGearAHD", d => d[3] == 126 || d[3] == 127));
-            //decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("CurrentGearREV", d => d[3] == 124));
-            //decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("CurrentGearNEU", d => d[3] != 124 && d[3] != 126 && d[3] != 127));
+            skimerdecoder_80 = skimer_80.AddPGN(0xffa7);  
+            skimerdecoder_80.AddVariableDefinition(MRADSVariableDefinition.CreateBool("skim80bool", d => d[0] == 0xfc)); //if manual we get true anytging else wil lbe false
+          
+        }
+        //at address 81 
+        protected void Init_Skim81(string name, byte source, int channel)
+        {
+            MRADSDataProvider skimer_81= Config.CreateProvider(name, source, channel);
+            PGNDecoder skimerdecoder_81;
+            skimerdecoder_81 = skimer_81.AddPGN(0xffa0);
+            skimerdecoder_81.AddVariableDefinition(MRADSVariableDefinition.CreateInt("skim81rpm", d => (d[1] << 8) | d[0]));
 
-            //decoder = engine.AddPGN(0xfef8);
-            //decoder.AddVariableDefinition(MRADSVariableDefinition.CreateFloat("ClutchPressure", d => d[0] * 16 * 0.145038));
-            //decoder.AddVariableDefinition(MRADSVariableDefinition.CreateFloat("TransmissionOilTemperature", d => (((d[5] << 8) | (d[4])) * 0.03125) - 273));
-
-            //decoder = engine.AddPGN(0xfeef);
-            //decoder.AddVariableDefinition(MRADSVariableDefinition.CreateFloat("EngineOilPressure", d => d[3] * 4 * 0.145038));
-
-            //decoder = engine.AddPGN(0xfee5);
-            //decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("TotalEngineHours", d => (int)(BitConverter.ToUInt32(d, 0) * 0.05)));
-
-            //decoder = engine.AddPGN(0xfef7);
-            //decoder.AddVariableDefinition(MRADSVariableDefinition.CreateFloat("BatteryVoltage", d => BitConverter.ToUInt16(d, 6) * 0.05));
-
-            //decoder = engine.AddPGN(0xf003);
-            //decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("EngineLoad", 2, 2));
-
-            //decoder = engine.AddPGN(0xfedf);
-            //decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("DesiredRPM", d => (d[2] << 5) | (d[1] >> 3)));
+            skimerdecoder_81 = skimer_81.AddPGN(0xffa6);
+            skimerdecoder_81.AddVariableDefinition(MRADSVariableDefinition.CreateBool("skim81bool", d => d[0] == 0xfc)); //if manual we get true anytging else wil lbe false
         }
         protected override bool CheckShipID(MRADSShip ship)
         {
@@ -127,6 +125,8 @@ namespace MRADS.Ships.SANFRAN
             InitControlUnit(ControlUnits[0]);
             InitClutchPanel(ClutchPanels[0]);
             InitEngine("MyEngine", 0x29, 2);
+            Init_Skim80("MySkim80", 0x80, 2);
+            Init_Skim81("MySkim81", 0x81, 2);
 
         }
         protected void InitEvents()

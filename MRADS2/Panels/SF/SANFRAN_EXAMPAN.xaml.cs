@@ -23,7 +23,7 @@ namespace MRADS2.Panels.SF
     {
         public SANFRAN_EXAMPAN(MRADSDataVM vmdata, DefaultBindVM vmship) : base(vmdata, vmship)
         {
-            InitializeComponent();
+          InitializeComponent();
         }
 
         public override string HeaderText => "Versions";
