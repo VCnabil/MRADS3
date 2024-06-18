@@ -11,9 +11,9 @@ using MRADS2.Ships.ViewModel;
 
 namespace MRADS.Ships.SANFRAN
 {
-    public class SANFRANVM : DataVMProvider, DefaultBindVM
+    public class SANFRANVM //: DataVMProvider, DefaultBindVM
     {
-        string name_cu;
+     /*   string name_cu;
         public GPSVM GPS { get; }
         public BindVariable<string> RollAngle { get; private set; }
         public BindVariable<string> PitchAngle { get; private set; }
@@ -33,7 +33,7 @@ namespace MRADS.Ships.SANFRAN
 
         public BindVariable ThrottleAnalogInput { get; private set; }
 
-        public SANFRANVM(MRADSDataVM datavm, MRADSShipConfig config, bool oldvmu = true) : base(datavm)
+        public SANFRANVM(MRADSDataVM datavm, MRADSShipConfig config) : base(datavm)
         {
 
             GPS = new GPSVM();
@@ -79,5 +79,6 @@ namespace MRADS.Ships.SANFRAN
                     return ("Unknown");
             }
         }
+     */
     }
 }

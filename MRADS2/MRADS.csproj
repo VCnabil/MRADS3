@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Samples\SANFRAN__act.csv~RF20ad9da.TMP" />
     <None Remove="vector logo.ico" />
   </ItemGroup>
 
