@@ -46,17 +46,42 @@ namespace MRADS.Ships.SANFRAN
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("MinorSWVersion", 1, 2));
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("SWRevision", 3, 4));
 
+            decoder = CU.AddPGN(0xff30);
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluAHEcmd_S", 3, 0));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluAHEcmd_P", 3, 1));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluTROcmd_S", 3, 2));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluTROcmd_P", 3, 3));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluREVcmd_S", 3, 4));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluREVcmd_P", 3, 5));
+
+
+            decoder = CU.AddPGN(0xff8d);
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("ActiveCuID", 5, 5));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("CrashStop", 7, 7));
+
         }
+
         protected override void InitClutchPanel(MRADSClutchPanel CP)
         {
-            PGNDecoder decoder;
+            PGNDecoder Clutchdecoder;
 
-            decoder = CP.AddPGN(0xff89);
-     
+            Clutchdecoder = CP.AddPGN(0xff89);
+            Clutchdecoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("CluSW_MAJ", 0, 0));
+            Clutchdecoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("CluSW_min", 1, 1));
+            Clutchdecoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("CluSW_REV", d => (d[2] << 8) | d[3]));
 
-            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("MajorSWVersion", 5, 5));
-            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("MinorSWVersion", 6, 6));
-            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("SWRevision", 7, 7));
+            Clutchdecoder = CP.AddPGN(0xff31);
+            Clutchdecoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluAHE_S", 0, 0));
+            Clutchdecoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluAHE_P", 0, 1));
+            Clutchdecoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluTRO_S", 0, 2));
+            Clutchdecoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluTRO_P", 0, 3));
+            Clutchdecoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluREV_S", 0, 4));
+            Clutchdecoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluREV_P", 0, 5));
+            Clutchdecoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("CLU_P_STATE", 5, 5));
+            Clutchdecoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("CLU_S_STATE", 6, 6));
+
+
+
 
         }
         protected void InitEngine(string name, byte source, int channel)
@@ -65,9 +90,6 @@ namespace MRADS.Ships.SANFRAN
             PGNDecoder decoder;
 
             decoder = engine.AddPGN(0xff8f);
-            //decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("Engine1RPM", d => (d[5] << 5) | (d[4] >> 3)));
-            //decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("Engine2RPM", d => (d[7] << 5) | (d[6] >> 3)));
-
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("Engine1RPM", d => (d[5] << 8) | d[4]));
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("Engine2RPM", d => (d[7] << 8) | d[6]));           
         }

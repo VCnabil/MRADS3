@@ -27,37 +27,71 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="64"/>
             <RowDefinition Height="64"/>
             <RowDefinition Height="64"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Label Grid.Column="0"  Content="SW version" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="40" Width="69"/>
-        <controls:DataBox Grid.Row="1" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.SoftwareVersion.Value}" HorizontalAlignment="Center" Height="28" VerticalAlignment="Center" Width="150"/>
+        <Label  Grid.Row="0" Grid.Column="0"  Content="CU SW / Clu SW"  />
+        <controls:DataBox Grid.Row="0" Grid.Column="1" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.SoftwareVersion.Value}" />
+        <controls:DataBox Grid.Row="0" Grid.Column="2" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluSWversion.Value}" />
+        <Label  Grid.Row="0" Grid.Column="3"  Content="crashStop"  />
+        <controls:DataBox Grid.Row="0" Grid.Column="4" MinWidth="50" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.CrashStopVar.Value}" />
+        
 
-        <Label Grid.Column="2"  Content="eng1 rpm" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="26" Width="61"/>
-        <controls:DataBox Grid.Row="1" Grid.Column="2" Style="{StaticResource StandardDataBox}" Value="{Binding MainEngine.Eng_1_RPM.Value}" HorizontalAlignment="Center" Height="28" VerticalAlignment="Center" Width="150"/>
+        <Label  Grid.Row="1" Grid.Column="1" Content="SKIM 80 CLU MAN"  />
+        <Label  Grid.Row="1" Grid.Column="2" Content="SKIM 81 CLU MAN"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="1" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainSkim80.Skim80boolVar.Value}"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="2" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainSkim81.Skim81boolVar.Value}"/>
 
-        <Label Grid.Column="3"  Content="eng2 rpm" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="26" Width="61"/>
-        <controls:DataBox Grid.Row="1" Grid.Column="3" Style="{StaticResource StandardDataBox}" Value="{Binding MainEngine.Eng_2_RPM.Value}" HorizontalAlignment="Center" Height="28" VerticalAlignment="Center" Width="150"/>
-
-        <Label Grid.Column="4"  Content="eng1 rpm skim" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="26" Width="89"/>
-        <controls:DataBox Grid.Row="1" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding MainSkim80.Skim80rpmVar.Value}" HorizontalAlignment="Center" Height="28" VerticalAlignment="Center" Width="150"/>
-
-        <Label Grid.Column="5"  Content="eng2 rpm skim" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="26" Width="89"/>
-        <controls:DataBox Grid.Row="1" Grid.Column="5" Style="{StaticResource StandardDataBox}" Value="{Binding MainSkim81.Skim81rpmVar.Value}" HorizontalAlignment="Center" Height="28" VerticalAlignment="Center" Width="150"/>
-
-        <Label  Grid.Row="2" Grid.Column="4" Content="SKIM 80 CLU MAN" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="26" Width="128"/>
-        <controls:DataBox Grid.Row="3" Grid.Column="4" Style="{StaticResource StandardDataBox}" Value="{Binding MainSkim80.Skim80boolVar.Value}" HorizontalAlignment="Center" Height="28" VerticalAlignment="Center" Width="150"/>
+        <Label Grid.Row="3"  Grid.Column="0"  Content="Shaft rpm  port/stbd" />
+        <controls:DataBox Grid.Row="3" Grid.Column="1" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainEngine.Eng_1_RPM.Value}"/>
+        <controls:DataBox Grid.Row="3" Grid.Column="2" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainEngine.Eng_2_RPM.Value}" />
 
 
-        <Label  Grid.Row="2" Grid.Column="5" Content="SKIM 81 CLU MAN" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="26" Width="126"/>
-        <controls:DataBox Grid.Row="3" Grid.Column="5" Style="{StaticResource StandardDataBox}" Value="{Binding MainSkim81.Skim81boolVar.Value}" HorizontalAlignment="Center" Height="28" VerticalAlignment="Center" Width="150"/>
+        <Label Grid.Row="4"  Grid.Column="0" Content="eng1 eng2  rpm skim"   />
+        <controls:DataBox Grid.Row="4" Grid.Column="1" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainSkim80.Skim80rpmVar.Value}"/>
+        <controls:DataBox Grid.Row="4" Grid.Column="2" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainSkim81.Skim81rpmVar.Value}"/>
+
+        
+        
+        <!-- software version databox place holders for now -->
+        <Label  Grid.Row="1" Grid.Column="3"  Content="port clu cmd"  />
+        <controls:DataBox Grid.Row="2" Grid.Column="3" MinWidth="100"  Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluAHEcmd_P_boolVar.Value}" />
+        <controls:DataBox Grid.Row="3" Grid.Column="3" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluTROcmd_P_boolVar.Value}" />
+        <controls:DataBox Grid.Row="4" Grid.Column="3" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluREVcmd_P_boolVar.Value}" />
+        <Label  Grid.Row="1"  Grid.Column="4"    Content="stbd clu cmd"  />
+        <controls:DataBox Grid.Row="2" Grid.Column="4" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluAHEcmd_S_boolVar.Value}" />
+        <controls:DataBox Grid.Row="3" Grid.Column="4" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluTROcmd_S_boolVar.Value}" />
+        <controls:DataBox Grid.Row="4" Grid.Column="4" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluREVcmd_S_boolVar.Value}" />
+
+        <Label  Grid.Row="1" Grid.Column="0"  Content="Active cu"  />
+        <controls:DataBox Grid.Row="2" Grid.Column="0" MinWidth="50" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.ActiveCuIDVar.Value}" />
+
+        <Label  Grid.Row="1" Grid.Column="5"  Content="port clu"  />
+        <controls:DataBox Grid.Row="2" Grid.Column="5" MinWidth="50"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluAHE_P_boolVar.Value}" />
+        <controls:DataBox Grid.Row="3" Grid.Column="5" MinWidth="50" Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluTRO_P_boolVar.Value}" />
+        <controls:DataBox Grid.Row="4" Grid.Column="5" MinWidth="50" Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluREV_P_boolVar.Value}" />
+
+
+        <Label  Grid.Row="1" Grid.Column="6"  Content="stbd clu"  />
+        <controls:DataBox Grid.Row="2" Grid.Column="6" MinWidth="50"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluAHE_S_boolVar.Value}" />
+        <controls:DataBox Grid.Row="3" Grid.Column="6" MinWidth="50" Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluTRO_S_boolVar.Value}" />
+        <controls:DataBox Grid.Row="4" Grid.Column="6" MinWidth="50" Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluREV_S_boolVar.Value}" />
+
+
+
+        <controls:DataBox Grid.Row="0" Grid.Column="5" MinWidth="50"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.clu_p_stateVar.Value}" />
+        <controls:DataBox Grid.Row="0" Grid.Column="6" MinWidth="50"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.clu_s_stateVar.Value}" />
 
     </Grid>  
 </base:BasePanel>
