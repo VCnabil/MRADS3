@@ -9,6 +9,7 @@ using MRADS2.Ships.StandardShip;
 using System.Threading;
 using MRADS2.Ships.CCM;
 using MRADS2.Panels.StandardShip;
+using MRADS2.Ships.GenericViewModels;
 
 
 namespace MRADS.Ships.SANFRAN
@@ -24,6 +25,11 @@ namespace MRADS.Ships.SANFRAN
 
         public MAIN_ClutchVM MAIN_Clutch { get; }
 
+
+        public GPSVM GPS { get; }
+
+    
+
         public SFEXAM_VM(MRADSDataVM vmdata ,MRADSShipConfig config, bool oldvmu = true) : base(vmdata)
         {
             MainCU = new MAIN_CUVM(vmdata.Ship.ControlUnits[0]);
@@ -31,6 +37,7 @@ namespace MRADS.Ships.SANFRAN
             MainSkim80 = new Skim80VM(config.GetProvider("MySkim80"));
             MainSkim81 = new Skim81VM(config.GetProvider("MySkim81"));
             MAIN_Clutch = new MAIN_ClutchVM(vmdata.Ship.ClutchPanels[0]);
+            GPS = new GPSVM();
         }
     }
      
@@ -41,8 +48,8 @@ namespace MRADS.Ships.SANFRAN
 
         public BindVariable cluAHEcmd_S_boolVar { get; private set; }
         public BindVariable cluAHEcmd_P_boolVar { get; private set; }
-        public BindVariable cluTROcmd_S_boolVar { get; private set; }
-        public BindVariable cluTROcmd_P_boolVar { get; private set; }
+        //public BindVariable cluTROcmd_S_boolVar { get; private set; }
+        //public BindVariable cluTROcmd_P_boolVar { get; private set; }
         public BindVariable cluREVcmd_S_boolVar { get; private set; }
         public BindVariable cluREVcmd_P_boolVar { get; private set; }
 
@@ -63,8 +70,8 @@ namespace MRADS.Ships.SANFRAN
 
             cluAHEcmd_S_boolVar = datavm.GetVariable(ControlUnit.Name, "cluAHEcmd_S").Bind();
             cluAHEcmd_P_boolVar = datavm.GetVariable(ControlUnit.Name, "cluAHEcmd_P").Bind();
-            cluTROcmd_S_boolVar = datavm.GetVariable(ControlUnit.Name, "cluTROcmd_S").Bind();
-            cluTROcmd_P_boolVar = datavm.GetVariable(ControlUnit.Name, "cluTROcmd_P").Bind();
+            //cluTROcmd_S_boolVar = datavm.GetVariable(ControlUnit.Name, "cluTROcmd_S").Bind();
+            //cluTROcmd_P_boolVar = datavm.GetVariable(ControlUnit.Name, "cluTROcmd_P").Bind();
             cluREVcmd_S_boolVar = datavm.GetVariable(ControlUnit.Name, "cluREVcmd_S").Bind();
             cluREVcmd_P_boolVar = datavm.GetVariable(ControlUnit.Name, "cluREVcmd_P").Bind();
 
@@ -135,6 +142,7 @@ namespace MRADS.Ships.SANFRAN
 
    public class MAIN_ClutchVM : DefaultBindVM
     {
+        
         public BindVariables<string> cluSWversion { get; private set; }
 
 
@@ -150,6 +158,23 @@ namespace MRADS.Ships.SANFRAN
         public BindVariable clu_s_stateVar { get; private set; }
         public BindVariable clu_p_stateVar { get; private set; }
 
+        public BindVariable<string> Port_clutch_cmd
+        {
+            get; private set;
+        }
+
+        public string Stbd_clutch_cmd
+        {
+            //get
+            //{
+            //    if ((bool)cluAHE_S_boolVar.Value) return "AHD";
+            //    if ((bool)cluTRO_S_boolVar.Value) return "TRO";
+            //    if ((bool)cluREV_S_boolVar.Value) return "REV";
+            //    return "Unknown";
+            //}
+            get; private set;
+        }
+
         MRADSClutchPanel ClutchPanel;
         public MAIN_ClutchVM(MRADSClutchPanel clutchpanel)
         {
@@ -157,6 +182,8 @@ namespace MRADS.Ships.SANFRAN
         }
         public void DefaultBind(MRADSDataVM datavm)
         {
+
+
             cluSWversion = datavm.MultiBind(ClutchPanel.Name, v => $"{v["CluSW_MAJ"].Value}.{v["CluSW_min"].Value} Rev{v["CluSW_REV"].Value}", "CluSW_MAJ", "CluSW_min", "CluSW_REV");
 
             cluAHE_S_boolVar = datavm.GetVariable(ClutchPanel.Name, "cluAHE_S").Bind();
@@ -168,6 +195,21 @@ namespace MRADS.Ships.SANFRAN
             clu_s_stateVar = datavm.GetVariable(ClutchPanel.Name, "CLU_S_STATE").Bind();
             clu_p_stateVar = datavm.GetVariable(ClutchPanel.Name, "CLU_P_STATE").Bind();
 
+           // debugStr = "lol";
+
+
+            // do it like this for port clutch cmd
+            //Command = datavm.MultiBind(ClutchPanel.Name, v =>
+            //{
+            //    if ((bool)v[$"{Side}EngageAHDCmd"].RawValue)
+            //        return ("Ahead");
+            //    else if ((bool)v[$"{Side}EngageREVCmd"].RawValue)
+            //        return ("Reverse");
+            //    else
+            //        return ("Neutral");
+            //}, $"{Side}EngageAHDCmd", $"{Side}EngageREVCmd");
+
+           
 
         }
     }

@@ -67,11 +67,11 @@
         <!-- software version databox place holders for now -->
         <Label  Grid.Row="1" Grid.Column="3"  Content="port clu cmd"  />
         <controls:DataBox Grid.Row="2" Grid.Column="3" MinWidth="100"  Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluAHEcmd_P_boolVar.Value}" />
-        <controls:DataBox Grid.Row="3" Grid.Column="3" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluTROcmd_P_boolVar.Value}" />
+        <!--<controls:DataBox Grid.Row="3" Grid.Column="3" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluTROcmd_P_boolVar.Value}" />-->
         <controls:DataBox Grid.Row="4" Grid.Column="3" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluREVcmd_P_boolVar.Value}" />
         <Label  Grid.Row="1"  Grid.Column="4"    Content="stbd clu cmd"  />
         <controls:DataBox Grid.Row="2" Grid.Column="4" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluAHEcmd_S_boolVar.Value}" />
-        <controls:DataBox Grid.Row="3" Grid.Column="4" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluTROcmd_S_boolVar.Value}" />
+        <!--<controls:DataBox Grid.Row="3" Grid.Column="4" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluTROcmd_S_boolVar.Value}" />-->
         <controls:DataBox Grid.Row="4" Grid.Column="4" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluREVcmd_S_boolVar.Value}" />
 
         <Label  Grid.Row="1" Grid.Column="0"  Content="Active cu"  />
@@ -90,8 +90,13 @@
 
 
 
-        <controls:DataBox Grid.Row="0" Grid.Column="5" MinWidth="50"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.clu_p_stateVar.Value}" />
+        <controls:DataBox Grid.Row="0" Grid.Column="5" MinWidth="50"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.clu_p_stateVarc}" />
         <controls:DataBox Grid.Row="0" Grid.Column="6" MinWidth="50"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.clu_s_stateVar.Value}" />
+
+        <!--<controls:DataBox Grid.Row="5" Grid.Column="5" MinWidth="50"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.debugStr}" />-->
+        <!--<controls:DataBox Grid.Row="5" Grid.Column="6" MinWidth="50"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.Stbd_clutch_cmd.Value}" />-->
+        <!-- make alabel and bind its value to  MAIN_Clutch.debugStr />-->
+        <!--<TextBox Text="{Binding MAIN_Clutch.debugStr}"  Grid.Row="6" Grid.Column="3"  />-->
 
     </Grid>  
 </base:BasePanel>

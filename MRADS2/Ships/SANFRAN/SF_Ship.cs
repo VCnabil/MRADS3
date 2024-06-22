@@ -11,6 +11,7 @@ using MRADS2.Ships.StandardShip;
 using MRADS2.Ships.ViewModel;
 using MRADS2.Ships.CCM;
 using MRADS2.Ships;
+using MRADS2.Panels.StandardShip;
 
 namespace MRADS.Ships.SANFRAN
 {
@@ -26,7 +27,9 @@ namespace MRADS.Ships.SANFRAN
 
             var shipvm = (SFEXAM_VM)ShipViewModel;
 
+            ret.Add(new SF_Pannel_A(vmdata, shipvm));
             ret.Add(new SANFRAN_EXAMPAN(vmdata, shipvm));
+            ret.Add(new GPSPanel(vmdata, shipvm.GPS));
 
 
             return (ret);
@@ -49,11 +52,10 @@ namespace MRADS.Ships.SANFRAN
             decoder = CU.AddPGN(0xff30);
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluAHEcmd_S", 3, 0));
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluAHEcmd_P", 3, 1));
-            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluTROcmd_S", 3, 2));
-            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluTROcmd_P", 3, 3));
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluREVcmd_S", 3, 4));
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluREVcmd_P", 3, 5));
 
+           
 
             decoder = CU.AddPGN(0xff8d);
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("ActiveCuID", 5, 5));
@@ -116,6 +118,43 @@ namespace MRADS.Ships.SANFRAN
             skimerdecoder_81 = skimer_81.AddPGN(0xffa6);
             skimerdecoder_81.AddVariableDefinition(MRADSVariableDefinition.CreateBool("skim81bool", d => d[0] == 0xfc)); //if manual we get true anytging else wil lbe false
         }
+        
+        protected void Init_GPS(string name, byte source, int channel) { 
+            MRADSDataProvider gps = Config.CreateProvider(name, source, channel);
+            PGNDecoder decoder;
+            decoder = gps.AddPGN(0xf112);
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateFloat("Heading", d => BitConverter.ToUInt16(d, 1) * 180 / Math.PI / 10000));
+
+            decoder = gps.AddPGN(0xf801);
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateFloat("Latitude", d => BitConverter.ToInt32(d, 0) * 1E-7));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateFloat("Longitude", d => BitConverter.ToInt32(d, 4) * 1E-7));
+
+            decoder = gps.AddPGN(0xf113);
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateFloat("RateOfTurn", d => BitConverter.ToInt32(d, 1) * 1E-6 / 32 * 180 / Math.PI));
+
+            decoder = gps.AddPGN(0xf802);
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateFloat("SpeedOverGround", d => BitConverter.ToUInt16(d, 4) * 0.01 * 1.943844));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateFloat("CourseOverGround", d => BitConverter.ToUInt16(d, 2) * 1E-4 * 180 / Math.PI));
+
+            decoder = gps.AddPGN(0xf010);
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("Year", d => ParseGPSTime(d).Year));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("Month", d => ParseGPSTime(d).Month));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("Day", d => ParseGPSTime(d).Day));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("Hour", d => ParseGPSTime(d).Hour));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("Minute", d => ParseGPSTime(d).Minute));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("Second", d => ParseGPSTime(d).Second));
+
+        }
+        DateTime ParseGPSTime(byte[] data)
+        {
+            uint days, ticks;
+
+            days = BitConverter.ToUInt16(data, 2);
+            ticks = BitConverter.ToUInt32(data, 4);
+
+            return (DateTime.UnixEpoch.AddDays(days).AddMilliseconds(ticks / 10.0));
+        }
+
         protected override bool CheckShipID(MRADSShip ship)
         {
             var v = ship.State.GetValue(ship.ControlUnits[0], "MajorSWVersion");
@@ -149,6 +188,7 @@ namespace MRADS.Ships.SANFRAN
             InitEngine("MyEngine", 0x29, 2);
             Init_Skim80("MySkim80", 0x80, 2);
             Init_Skim81("MySkim81", 0x81, 2);
+            Init_GPS("GPS", 0x7f, 1);
 
         }
         protected void InitEvents()

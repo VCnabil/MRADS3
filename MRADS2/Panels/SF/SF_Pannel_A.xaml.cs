@@ -26,6 +26,6 @@ namespace MRADS2.Panels.SF
             InitializeComponent();
         }
 
-        public override string HeaderText => "Versions";
+        public override string HeaderText => "SF A";
     }
 }
