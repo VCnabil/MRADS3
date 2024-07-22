@@ -60,7 +60,13 @@ namespace MRADS.Ships.SANFRAN
 
             decoder = CU.AddPGN(0xff8d);
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("ActiveCuID", 5, 5));
+
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("bP_IOSKIM_Fault", 6, 0));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("bS_IOSKIM_Fault", 6, 1));
+
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("CrashStop", 7, 7));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("bPCrashStopFlag", 7, 0));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("bSCrashStopFlag", 7, 1));
 
         }
 

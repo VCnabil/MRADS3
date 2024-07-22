@@ -59,6 +59,13 @@ namespace MRADS.Ships.SANFRAN
         public BindVariable ActiveCuIDVar { get; private set; }
         public BindVariable CrashStopVar { get; private set; }
 
+        public BindVariable bPCrashStopFlag_boolVarCU { get; private set; }
+        public BindVariable bSCrashStopFlag_boolVarCU { get; private set; }
+
+        public BindVariable bP_IOSKIM_Fault_boolVarCU { get; private set; }
+
+        public BindVariable bS_IOSKIM_Fault_boolVarCU { get; private set; }
+
         MRADSControlUnit ControlUnit;
         public MAIN_CUVM(MRADSControlUnit controlunit)
         {
@@ -78,6 +85,12 @@ namespace MRADS.Ships.SANFRAN
 
             ActiveCuIDVar = datavm.GetVariable(ControlUnit.Name, "ActiveCuID").Bind();
             CrashStopVar = datavm.GetVariable(ControlUnit.Name, "CrashStop").Bind();
+
+            bPCrashStopFlag_boolVarCU = datavm.GetVariable(ControlUnit.Name, "bPCrashStopFlag").Bind();
+            bSCrashStopFlag_boolVarCU = datavm.GetVariable(ControlUnit.Name, "bSCrashStopFlag").Bind();
+
+            bP_IOSKIM_Fault_boolVarCU = datavm.GetVariable(ControlUnit.Name, "bP_IOSKIM_Fault").Bind();
+            bS_IOSKIM_Fault_boolVarCU = datavm.GetVariable(ControlUnit.Name, "bS_IOSKIM_Fault").Bind();
         }
     }
 
