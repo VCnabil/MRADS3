@@ -229,6 +229,17 @@ namespace MRADS2
         }
     }
 
+    public class MRADS_AMUnit : MRADSDataProvider
+    {
+        public object Data { get; }
+        public IEnumerable<MRADSVariableDefinition> Parameters => decoders.Values.Single(a => a is ParameterDecoder).GetVariableDefinitions();
+
+        public MRADS_AMUnit(string name, byte address, object data, params int[] channels) : base(name, address, channels)
+        {
+            Data = data;
+        }
+    }
+
     /// <summary>
     /// The ship variable state at a given point in time
     /// </summary>

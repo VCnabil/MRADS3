@@ -362,3 +362,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /MRADS2/VersionGen.cs
+/MRADS2/Samples/theLastRide.csv
+/MRADS2/Samples/log90min_105_106_short_realcsvk.csv

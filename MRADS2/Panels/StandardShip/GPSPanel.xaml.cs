@@ -27,7 +27,7 @@ namespace MRADS2.Panels.StandardShip
             InitializeComponent();
         }
 
-        public override string HeaderText => "GPS";
+        public override string HeaderText => "GPS2";
 
         private void GPSShow_Click(object sender, RoutedEventArgs e)
         {

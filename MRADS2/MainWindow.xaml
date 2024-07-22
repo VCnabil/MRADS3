@@ -65,7 +65,6 @@
                 <MenuItem Header="I_mport">
                     <MenuItem Header="Import from SD Card..." Click="ImportSD_Click"/>
                     <MenuItem Header="Import from CSV..." Click="ImportCSV_Click"/>
-                    <MenuItem Header="Import from Reach..." Click="ImportReach_Click"/>
                 </MenuItem>
                 <MenuItem Header="_Export" IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow, Mode=FindAncestor}, Path=FileOpen}">
                     <MenuItem Header="Export Section..." Click="ExportSelection_Click"/>
