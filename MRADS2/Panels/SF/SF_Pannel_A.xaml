@@ -28,6 +28,8 @@
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -104,12 +106,51 @@
 
 
 
-        <controls:DataBox Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2"  Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.SoftwareVersion.Value}" />
+        <controls:DataBox Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2"  Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.SoftwareVersionSV.Value}" />
         <controls:DataBox Grid.Row="1" Grid.Column="3"  Grid.ColumnSpan="2"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluSWversion.Value}" />
 
-        <controls:DataBox Grid.Row="3" Grid.Column="0" MinWidth="40"  Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluAHEcmd_P_boolVar.Value}" />
-        <controls:DataBox Grid.Row="3" Grid.Column="1" MinWidth="40" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluAHEcmd_S_boolVar.Value}" />
+        <controls:DataBox Grid.Row="3" Grid.Column="0" MinWidth="40" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluAHEcmd_P_boolVarCU.Value}" />
+        <controls:DataBox Grid.Row="3" Grid.Column="1" MinWidth="40" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluAHEcmd_S_boolVarCU.Value}" />
 
+
+        <controls:DataBox Grid.Row="4" Grid.Column="0" MinWidth="40"  Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluREVcmd_P_boolVarCU.Value}" />
+        <controls:DataBox Grid.Row="4" Grid.Column="1" MinWidth="40"  Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluREVcmd_S_boolVarCU.Value}" />
+
+
+        <!--<controls:DataBox Grid.Row="5" Grid.Column="0" MinWidth="40"  Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluTROcmd_P_boolVarCU.Value}" />-->
+        <!--<controls:DataBox Grid.Row="5" Grid.Column="1" MinWidth="40"  Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluTROcmd_S_boolVarCU.Value}" />-->
+
+
+
+        <controls:DataBox Grid.Row="3" Grid.Column="3" MinWidth="40"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluAHE_P_boolVar.Value}" />
+        <controls:DataBox Grid.Row="3" Grid.Column="4" MinWidth="40"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluAHE_S_boolVar.Value}" />
+
+
+        <controls:DataBox Grid.Row="4" Grid.Column="3" MinWidth="40"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluREV_P_boolVar.Value}" />
+        <controls:DataBox Grid.Row="4" Grid.Column="4" MinWidth="40"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluREV_S_boolVar.Value}" />
+
+
+        <controls:DataBox Grid.Row="5" Grid.Column="3" MinWidth="40"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluTRO_P_boolVar.Value}" />
+        <controls:DataBox Grid.Row="5" Grid.Column="4" MinWidth="40"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluTRO_S_boolVar.Value}" />
+
+        <Label  Grid.Row="0" Grid.Column="2"  Content="crashStop"  />
+        <controls:DataBox Grid.Row="1" Grid.Column="2" MinWidth="50" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.CrashStopVar.Value}" />
+
+
+
+        <Label Grid.Row="0"  Grid.Column="6"  Content="P.RPM shaft" />
+        <controls:DataBox Grid.Row="1" Grid.Column="6" MinWidth="70"   Style="{StaticResource StandardDataBox}" Value="{Binding MainEngine.Eng_1_RPM.Value}"/>
+       
+        <Label Grid.Row="0"  Grid.Column="7"  Content="S.RPM Shaft" />
+        <controls:DataBox Grid.Row="1" Grid.Column="7" MinWidth="70"    Style="{StaticResource StandardDataBox}" Value="{Binding MainEngine.Eng_2_RPM.Value}" />
+
+        <controls:DataBox Grid.Row="2" Grid.Column="6" MinWidth="70" Style="{StaticResource StandardDataBox}" Value="{Binding MainSkim80.Skim80rpmVar.Value}"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="7" MinWidth="70" Style="{StaticResource StandardDataBox}" Value="{Binding MainSkim81.Skim81rpmVar.Value}"/>
+
+
+        <Label Grid.Row="3"  Grid.Column="6"  Content="P.RPM ENG" />
+        <Label Grid.Row="3"  Grid.Column="7"  Content="S.RPM ENG" />
+        
     </Grid>
     
 </base:BasePanel>

@@ -28,7 +28,7 @@ namespace MRADS.Ships.SANFRAN
             var shipvm = (SFEXAM_VM)ShipViewModel;
 
             ret.Add(new SF_Pannel_A(vmdata, shipvm));
-            ret.Add(new SANFRAN_EXAMPAN(vmdata, shipvm));
+           // ret.Add(new SANFRAN_EXAMPAN(vmdata, shipvm));
             ret.Add(new GPSPanel(vmdata, shipvm.GPS));
 
 
@@ -54,8 +54,9 @@ namespace MRADS.Ships.SANFRAN
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluAHEcmd_P", 3, 1));
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluREVcmd_S", 3, 4));
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateBool("cluREVcmd_P", 3, 5));
+            //cluREV_S_boolVar  cluREV_P_boolVar
 
-           
+
 
             decoder = CU.AddPGN(0xff8d);
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateInt("ActiveCuID", 5, 5));
@@ -190,11 +191,13 @@ namespace MRADS.Ships.SANFRAN
             Init_Skim81("MySkim81", 0x81, 2);
             Init_GPS("GPS", 0x7f, 1);
 
+            InitEvents();
+
         }
         protected void InitEvents()
         {
-            //AddEventHandler(new StandardMessageEvent(this));
-            //AddEventHandler(new StandardOnlineOfflineEvent(this));
+            AddEventHandler(new StandardMessageEvent(this));
+            AddEventHandler(new StandardOnlineOfflineEvent(this));
             //AddEventHandler(new StandardShipFaultEvent(this));
             //AddEventHandler(new StandardShipVariableChangeEvent(this));
             //AddEventHandler(new StandardShipCalibrationEvent(this));

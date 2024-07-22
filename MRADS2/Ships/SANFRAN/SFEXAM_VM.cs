@@ -44,14 +44,15 @@ namespace MRADS.Ships.SANFRAN
 
     public class MAIN_CUVM : DefaultBindVM
     {
-        public BindVariables<string> SoftwareVersion { get; private set; }
+        public BindVariables<string> SoftwareVersionSV { get; private set; }
 
-        public BindVariable cluAHEcmd_S_boolVar { get; private set; }
-        public BindVariable cluAHEcmd_P_boolVar { get; private set; }
-        //public BindVariable cluTROcmd_S_boolVar { get; private set; }
-        //public BindVariable cluTROcmd_P_boolVar { get; private set; }
-        public BindVariable cluREVcmd_S_boolVar { get; private set; }
-        public BindVariable cluREVcmd_P_boolVar { get; private set; }
+        public BindVariable cluAHEcmd_S_boolVarCU { get; private set; }
+        public BindVariable cluAHEcmd_P_boolVarCU { get; private set; }
+        
+        public BindVariable cluTROcmd_S_boolVarCU { get; private set; }
+        public BindVariable cluTROcmd_P_boolVarCU { get; private set; }
+        public BindVariable cluREVcmd_S_boolVarCU { get; private set; }
+        public BindVariable cluREVcmd_P_boolVarCU { get; private set; }
 
 
 
@@ -65,15 +66,15 @@ namespace MRADS.Ships.SANFRAN
         }
         public void DefaultBind(MRADSDataVM datavm)
         {
-            SoftwareVersion = datavm.MultiBind(ControlUnit.Name, v => $"{v["MajorSWVersion"].Value}.{v["MinorSWVersion"].Value} Rev{v["SWRevision"].Value}", "MajorSWVersion", "MinorSWVersion", "SWRevision");
+            SoftwareVersionSV = datavm.MultiBind(ControlUnit.Name, v => $"{v["MajorSWVersion"].Value}.{v["MinorSWVersion"].Value} Rev{v["SWRevision"].Value}", "MajorSWVersion", "MinorSWVersion", "SWRevision");
         
 
-            cluAHEcmd_S_boolVar = datavm.GetVariable(ControlUnit.Name, "cluAHEcmd_S").Bind();
-            cluAHEcmd_P_boolVar = datavm.GetVariable(ControlUnit.Name, "cluAHEcmd_P").Bind();
-            //cluTROcmd_S_boolVar = datavm.GetVariable(ControlUnit.Name, "cluTROcmd_S").Bind();
-            //cluTROcmd_P_boolVar = datavm.GetVariable(ControlUnit.Name, "cluTROcmd_P").Bind();
-            cluREVcmd_S_boolVar = datavm.GetVariable(ControlUnit.Name, "cluREVcmd_S").Bind();
-            cluREVcmd_P_boolVar = datavm.GetVariable(ControlUnit.Name, "cluREVcmd_P").Bind();
+            cluAHEcmd_S_boolVarCU = datavm.GetVariable(ControlUnit.Name, "cluAHEcmd_S").Bind();
+            cluAHEcmd_P_boolVarCU = datavm.GetVariable(ControlUnit.Name, "cluAHEcmd_P").Bind();
+            // cluTROcmd_S_boolVarCU = datavm.GetVariable(ControlUnit.Name, "cluTROcmd_S").Bind();
+            //cluTROcmd_P_boolVarCU = datavm.GetVariable(ControlUnit.Name, "cluTROcmd_P").Bind();
+            cluREVcmd_S_boolVarCU = datavm.GetVariable(ControlUnit.Name, "cluREVcmd_S").Bind();
+            cluREVcmd_P_boolVarCU = datavm.GetVariable(ControlUnit.Name, "cluREVcmd_P").Bind();
 
             ActiveCuIDVar = datavm.GetVariable(ControlUnit.Name, "ActiveCuID").Bind();
             CrashStopVar = datavm.GetVariable(ControlUnit.Name, "CrashStop").Bind();

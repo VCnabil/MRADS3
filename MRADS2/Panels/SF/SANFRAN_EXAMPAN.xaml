@@ -46,7 +46,7 @@
         <controls:DataBox Grid.Row="0" Grid.Column="2" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluSWversion.Value}" />
         <Label  Grid.Row="0" Grid.Column="3"  Content="crashStop"  />
         <controls:DataBox Grid.Row="0" Grid.Column="4" MinWidth="50" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.CrashStopVar.Value}" />
-        
+
 
         <Label  Grid.Row="1" Grid.Column="1" Content="SKIM 80 CLU MAN"  />
         <Label  Grid.Row="1" Grid.Column="2" Content="SKIM 81 CLU MAN"/>
@@ -62,8 +62,8 @@
         <controls:DataBox Grid.Row="4" Grid.Column="1" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainSkim80.Skim80rpmVar.Value}"/>
         <controls:DataBox Grid.Row="4" Grid.Column="2" MinWidth="100" Style="{StaticResource StandardDataBox}" Value="{Binding MainSkim81.Skim81rpmVar.Value}"/>
 
-        
-        
+
+
         <!-- software version databox place holders for now -->
         <Label  Grid.Row="1" Grid.Column="3"  Content="port clu cmd"  />
         <controls:DataBox Grid.Row="2" Grid.Column="3" MinWidth="100"  Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.cluAHEcmd_P_boolVar.Value}" />
@@ -78,7 +78,7 @@
         <controls:DataBox Grid.Row="2" Grid.Column="0" MinWidth="50" Style="{StaticResource StandardDataBox}" Value="{Binding MainCU.ActiveCuIDVar.Value}" />
 
         <Label  Grid.Row="1" Grid.Column="5"  Content="port clu"  />
-        <controls:DataBox Grid.Row="2" Grid.Column="5" MinWidth="50"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluAHE_P_boolVar.Value}" />
+        <controls:DataBox Grid.Row="2" Grid.Column="4" MinWidth="50"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluAHE_P_boolVar.Value}" HorizontalAlignment="Left" Margin="96,0,0,0" VerticalAlignment="Center" Grid.ColumnSpan="2" />
         <controls:DataBox Grid.Row="3" Grid.Column="5" MinWidth="50" Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluTRO_P_boolVar.Value}" />
         <controls:DataBox Grid.Row="4" Grid.Column="5" MinWidth="50" Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.cluREV_P_boolVar.Value}" />
 
@@ -90,7 +90,7 @@
 
 
 
-        <controls:DataBox Grid.Row="0" Grid.Column="5" MinWidth="50"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.clu_p_stateVarc}" />
+        <controls:DataBox Grid.Row="0" Grid.Column="5" MinWidth="50"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.clu_p_stateVar.Value}" />
         <controls:DataBox Grid.Row="0" Grid.Column="6" MinWidth="50"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.clu_s_stateVar.Value}" />
 
         <!--<controls:DataBox Grid.Row="5" Grid.Column="5" MinWidth="50"  Style="{StaticResource StandardDataBox}" Value="{Binding MAIN_Clutch.debugStr}" />-->
@@ -98,5 +98,5 @@
         <!-- make alabel and bind its value to  MAIN_Clutch.debugStr />-->
         <!--<TextBox Text="{Binding MAIN_Clutch.debugStr}"  Grid.Row="6" Grid.Column="3"  />-->
 
-    </Grid>  
+    </Grid>
 </base:BasePanel>
