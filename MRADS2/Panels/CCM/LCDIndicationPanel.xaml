@@ -104,7 +104,7 @@
 
         <Label Grid.Row="3" Grid.Column="1" Content="TABS" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,14,0,5"/>
 
-        <controls:BarGraph Grid.Row="4" Grid.Column="1" MaxWidth="100" Min="-150" Max="1000" Reverse="True" PositiveColor="Crimson" Background="SlateGray" Segmented="True" Value="{Binding TabCU.TabCUSide[0].TabFeedbackScaled.Value, Converter={StaticResource barValueConverter}}"/>
+        <controls:BarGraph Grid.Row="4" Grid.Column="1" MaxWidth="60" Min="-150" Max="1000" Reverse="True" PositiveColor="Crimson" Background="SlateGray" Segmented="True" Value="{Binding TabCU.TabCUSide[0].TabFeedbackScaled.Value, Converter={StaticResource barValueConverter}}"/>
 
         <Border Grid.Column="2" Grid.RowSpan="5" BorderBrush="Black" BorderThickness="2"/>
 
@@ -150,7 +150,7 @@
 
         <Label Grid.Row="3" Grid.Column="3" Content="TABS" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,14,0,5"/>
 
-        <controls:BarGraph Grid.Row="4" Grid.Column="3" MaxWidth="100" Min="-150" Max="1000" Reverse="True" PositiveColor="Crimson" Background="SlateGray" Segmented="True" Value="{Binding TabCU.TabCUSide[1].TabFeedbackScaled.Value, Converter={StaticResource barValueConverter}}"/>
+        <controls:BarGraph Grid.Row="4" Grid.Column="3" MaxWidth="60" Min="-150" Max="1000" Reverse="True" PositiveColor="Crimson" Background="SlateGray" Segmented="True" Value="{Binding TabCU.TabCUSide[1].TabFeedbackScaled.Value, Converter={StaticResource barValueConverter}}"/>
 
     </Grid>
 </base:BasePanel>

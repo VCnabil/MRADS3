@@ -65,6 +65,7 @@
                 <MenuItem Header="I_mport">
                     <MenuItem Header="Import from SD Card..." Click="ImportSD_Click"/>
                     <MenuItem Header="Import from CSV..." Click="ImportCSV_Click"/>
+                    <MenuItem Header="Import from Reach..." Click="ImportReach_Click"/>
                 </MenuItem>
                 <MenuItem Header="_Export" IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow, Mode=FindAncestor}, Path=FileOpen}">
                     <MenuItem Header="Export Section..." Click="ExportSelection_Click"/>
@@ -87,9 +88,10 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="70*"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="40*"/>
+                <RowDefinition Height="60*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="58*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
             <controls:ContentPanel Grid.Row="2" Grid.Column="0" Title="Events">
@@ -132,6 +134,7 @@
                 <!--<local:ScrollTab x:Name="tabPanels"/>-->
                 <!--<controls:ScrollTab2 x:Name="tabPanels"/>-->
             </controls:ContentPanel>
+            <controls:ContentPanel Grid.Row="3" Grid.Column="0" Title="" Margin="0,2,0,0" Grid.ColumnSpan="2"></controls:ContentPanel>
         </Grid>
     </DockPanel>
 </Window>
