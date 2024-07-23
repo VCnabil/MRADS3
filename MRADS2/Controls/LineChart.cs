@@ -240,7 +240,7 @@ namespace MRADS2.Controls
 
                 mi = new MenuItem();
                 StackPanel sp = new StackPanel() { Orientation = Orientation.Horizontal };
-                TextBlock txtblock = new TextBlock() { Text = "Y Max", MinWidth = 50 };
+                TextBlock txtblock = new TextBlock() { Text = "Ymax", MinWidth = 50 };
                 TextBox txtbox = new TextBox() { MinWidth = 50 };
                 txtbox.KeyDown += YMax_KeyDown;
                 txtbox.SetBinding(TextBox.TextProperty, nameof(YMax));
@@ -254,7 +254,7 @@ namespace MRADS2.Controls
 
                 mi = new MenuItem();
                 sp = new StackPanel() { Orientation = Orientation.Horizontal };
-                txtblock = new TextBlock() { Text = "Y Min", MinWidth = 50 };
+                txtblock = new TextBlock() { Text = "Ymin", MinWidth = 50 };
                 txtbox = new TextBox() { MinWidth = 50 };
                 txtbox.KeyDown += YMin_KeyDown;
                 txtbox.SetBinding(TextBox.TextProperty, nameof(YMin));
@@ -658,9 +658,10 @@ namespace MRADS2.Controls
             DrawAxis(dc, YMax, YMin, Divisions, LabelFormat, true);
         }
 
+        //nabil
         void DrawAxis(DrawingContext dc, double ytop, double ybot, int ydivisions, string labelfmt, bool drawlabels = true)
         {
-            Pen pen = new Pen(Brushes.Gray, 1);
+            Pen pen = new Pen(Brushes.Red, 1);
             Point yaxistop, yaxisbot, p1, p2;
             int tickwidth = 5, i;
 

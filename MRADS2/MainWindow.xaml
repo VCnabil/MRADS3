@@ -8,7 +8,7 @@
         xmlns:controls="clr-namespace:MRADS2.Controls"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=local:MRADSDataVM}"
-        Title="MRADS" Height="768" Width="1366" WindowState="Maximized">
+        Title="MRADS" Height="1100" Width="1500" WindowState="Maximized">
 
     <Window.Resources>
         <Style x:Key="ClickableListBox" TargetType="ListBoxItem">
@@ -89,9 +89,9 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="58*"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="58*"/>
+                <RowDefinition Height="60*"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
@@ -124,10 +124,10 @@
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <Slider Grid.Column="0" x:Name="sliderTime" VerticalAlignment="Center" Margin="5,5,5,5" Minimum="{Binding StartTimeSeconds}" Maximum="{Binding EndTimeSeconds}" Value="{Binding Path=TimeSeconds}"/>
+                    <Slider Grid.Column="0" x:Name="sliderTime" VerticalAlignment="Center" Margin="2,2,2,2" Minimum="{Binding StartTimeSeconds}" Maximum="{Binding EndTimeSeconds}" Value="{Binding Path=TimeSeconds}"/>
                     <Button Grid.Column="1" x:Name="btnPlayStop" Width="25" Height="25" DataContext="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow, Mode=FindAncestor}}" Content="{Binding PlayStopButtonContent}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" IsEnabled="{Binding FileOpen}" Click="PlayStop_Click"/>
                     <!--<TextBox Grid.Column="2" Margin="5,5,5,5" FontSize="14" FontFamily="Lucida Console" HorizontalContentAlignment="Center" MinWidth="170" IsReadOnly="True" d:Text="2021-11-12 12:34:56.789" Text="{Binding Time, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss.fff}'}"/>-->
-                    <controls:TimeTextBox Grid.Column="2" Margin="5,5,5,5" FontSize="14" FontFamily="Lucida Console" Time="{Binding Time}"/>
+                    <controls:TimeTextBox Grid.Column="2" Margin="5,5,5,5" FontSize="12" FontFamily="Lucida Console" Time="{Binding Time}"/>
                 </Grid>
             </controls:ContentPanel>
             <controls:ContentPanel Grid.Row="2" Grid.Column="1" Title="Data">
