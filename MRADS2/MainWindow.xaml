@@ -8,7 +8,8 @@
         xmlns:controls="clr-namespace:MRADS2.Controls"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=local:MRADSDataVM}"
-        Title="MRADS" Height="768" Width="1366">
+        Title="MRADS" Height="768" Width="1366" WindowState="Maximized">
+
     <Window.Resources>
         <Style x:Key="ClickableListBox" TargetType="ListBoxItem">
             <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
