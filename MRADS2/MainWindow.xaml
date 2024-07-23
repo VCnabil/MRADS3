@@ -88,8 +88,8 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="60*"/>
-                <RowDefinition Height="8*"/>
+                <RowDefinition Height="58*"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="58*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
