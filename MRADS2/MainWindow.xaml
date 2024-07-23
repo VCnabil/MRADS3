@@ -87,9 +87,9 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="60*"/>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="40*"/>
             </Grid.RowDefinitions>
 
             <controls:ContentPanel Grid.Row="2" Grid.Column="0" Title="Events">
