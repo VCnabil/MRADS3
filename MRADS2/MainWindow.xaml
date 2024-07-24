@@ -92,7 +92,7 @@
                 <RowDefinition Height="60*"/>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="60*"/>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1.5*"/>
             </Grid.RowDefinitions>
 
             <controls:ContentPanel Grid.Row="2" Grid.Column="0" Title="Events">

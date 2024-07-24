@@ -37,14 +37,17 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Style="{StaticResource HeaderAlign}" Content="Roll (°)"/>
                 <controls:DataBox Grid.Row="0" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding RollAngle.Value}"/>
                 <Label Grid.Row="1" Style="{StaticResource HeaderAlign}" Content="Pitch (°)"/>
                 <controls:DataBox Grid.Row="1" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding PitchAngle.Value}"/>
-                <Label Grid.Row="2" Style="{StaticResource HeaderAlign}" Content="Latency (ms)"/>
-                <controls:DataBox Grid.Row="2" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding AngleLatency.Value}"/>
+                <Label Grid.Row="2" Style="{StaticResource HeaderAlign}" Content="Yaw (°)"/>
+                <controls:DataBox Grid.Row="2" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding YawAngle.Value}"/>
+                <Label Grid.Row="3" Style="{StaticResource HeaderAlign}" Content="Latency (ms)"/>
+                <controls:DataBox Grid.Row="3" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding AngleLatency.Value}"/>
             </Grid>
         </GroupBox>
 
@@ -82,6 +85,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Style="{StaticResource HeaderAlign}" Content="X-Axis (m/s²)"/>
@@ -90,6 +94,8 @@
                 <controls:DataBox Grid.Row="1" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding YAxisAcceleration.Value}"/>
                 <Label Grid.Row="2" Style="{StaticResource HeaderAlign}" Content="Z-Axis (m/s²)"/>
                 <controls:DataBox Grid.Row="2" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding ZAxisAcceleration.Value}"/>
+                <Label Grid.Row="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Boat Speed (kn)"/>
+                <controls:DataBox Grid.Row="3" Grid.Column="1" Style="{StaticResource StandardDataBox}" FloatFormat="0.00" Value="{Binding LCD.BoatSpeed.Value}"/>
             </Grid>
         </GroupBox>
     </Grid>
