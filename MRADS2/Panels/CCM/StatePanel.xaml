@@ -42,14 +42,17 @@
         <Label Grid.Column="5" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Port"/>
         <Label Grid.Column="6" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Starboard"/>
 
-        <Label Grid.Row="1" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Docking/Transit Mode"/>
-        <controls:DataBox Grid.Row="1" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DockingTransitState.Value}"/>
+        <Label Grid.Row="0" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Docking/Transit Mode"/>
+        <controls:DataBox Grid.Row="0" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DockingTransitState.Value}"/>
 
-        <Label Grid.Row="2" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Active Integrated Steering"/>
-        <controls:DataBox Grid.Row="2" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.IntegratedSteeringActive.Value}"/>
+        <Label Grid.Row="1" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Active Integrated Steering"/>
+        <controls:DataBox Grid.Row="1" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding TabCU.IntegratedSteeringActive.Value}"/>
 
-        <Label Grid.Row="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Docking Zone"/>
-        <controls:DataBox Grid.Row="3" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DockingZone.Value}"/>
+        <Label Grid.Row="2" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Docking Zone"/>
+        <controls:DataBox Grid.Row="2" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding DriveCU.DockingZone.Value}"/>
+
+        <Label Grid.Row="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Boat Speed (kn)"/>
+        <controls:DataBox Grid.Row="3" Grid.Column="1" Style="{StaticResource StandardDataBox}" FloatFormat="0.00" Value="{Binding LCD.BoatSpeed.Value}"/>
 
         <Label Grid.Row="4" Grid.Column="1" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Drive"/>
         <Label Grid.Row="4" Grid.Column="2" Style="{StaticResource HeaderAlign}" FontWeight="Bold" Content="Tab"/>
