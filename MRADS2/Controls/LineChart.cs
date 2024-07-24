@@ -446,7 +446,7 @@ namespace MRADS2.Controls
                 return;
 
             if (Points == null)
-                return;
+                return; 
 
             double drawwidth = bmp.PixelWidth, drawheight = bmp.PixelHeight;
 
@@ -758,7 +758,7 @@ namespace MRADS2.Controls
         {
             PlotName = plotname;
         }
-
+        
         public void AddPoint(DateTime time, double value)
         {
             Data.Add(new DataPoint() { Time = time, Value = value });
