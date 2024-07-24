@@ -108,7 +108,7 @@
 
         <controls:BarGraph Grid.Row="5" Grid.Column="1" MaxWidth="60" Min="-150" Max="1000" Reverse="True" PositiveColor="Crimson" Background="SlateGray" Segmented="True" Value="{Binding TabCU.TabCUSide[0].TabFeedbackScaled.Value, Converter={StaticResource barValueConverter}}"/>
 
-        <Border Grid.Column="2" Grid.RowSpan="5" BorderBrush="Black" BorderThickness="2"/>
+        <Border Grid.Column="2" Grid.RowSpan="6" BorderBrush="Black" BorderThickness="2"/>
 
         <Label Grid.Column="3" Content="STBD" FontSize="18" FontWeight="Bold" HorizontalContentAlignment="Center" Margin="0,0,0,36" Grid.RowSpan="2"/>
 
