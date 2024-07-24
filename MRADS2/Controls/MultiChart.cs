@@ -125,6 +125,7 @@ namespace MRADS2.Controls
             binding.Source = this;
             grid.SetBinding(HeightProperty, binding);
 
+            // Create only the row for XAxis initially
             grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(20, GridUnitType.Pixel) });
 
             grid.LayoutUpdated += Grid_LayoutUpdated;
@@ -132,9 +133,7 @@ namespace MRADS2.Controls
             Background = Brushes.Transparent;
 
             xaxis = new XAxis(PlotMargin);
-
             xaxis.SetValue(Grid.RowProperty, 0);
-
             grid.Children.Add(xaxis);
 
             Children.Add(grid);
@@ -148,8 +147,11 @@ namespace MRADS2.Controls
 
             Children.Add(cursorline);
 
+            // Initialize with a single chart
             AddChart(LineChart.PlotTypes.Logic, "");
         }
+
+
 
         private void Grid_LayoutUpdated(object sender, EventArgs e)
         {
@@ -178,22 +180,25 @@ namespace MRADS2.Controls
             if (charts.Count == 1 && charts[0].Name == "")
                 RemoveChart("");
 
-            var entry = new ChartEntry(grid, plottype, PlotMargin, name == null ? GetNextChartName() : name, grid.RowDefinitions.Count - 1);
+            // Use a fixed row index for charts
+            var entry = new ChartEntry(grid, plottype, PlotMargin, name == null ? GetNextChartName() : name, 1);
 
             entry.Chart.DrawingFreeze = true;
-
             entry.Chart.XStart = XStart;
             entry.Chart.XEnd = XEnd;
             entry.Chart.OnStatusChange += ChartEventCallback;
-
             entry.Chart.DrawingFreeze = false;
 
             charts.Add(entry);
 
-            xaxis.SetValue(Grid.RowProperty, charts.Count);
+            // Ensure XAxis is always in row 0
+            xaxis.SetValue(Grid.RowProperty, 0);
 
-            return (entry);
+            return entry;
         }
+
+
+
 
         public void RemoveChart(string name)
         {
@@ -210,14 +215,19 @@ namespace MRADS2.Controls
                 }
             }
 
+            // Adjust remaining charts to ensure they stay in row 1
             for (; i < charts.Count; i++)
-                charts[i].Row--;
+                charts[i].Row = 1;
 
+            // Add a default chart if no remaining charts
             if (charts.Count == 0 && name != "")
                 AddChart(LineChart.PlotTypes.Logic, "");
 
-            xaxis.SetValue(Grid.RowProperty, charts.Count);
+            // Ensure XAxis remains in row 0
+            xaxis.SetValue(Grid.RowProperty, 0);
         }
+
+
 
         public ChartEntry AddPlot(string plotname, LineChart.PlotTypes plottype, Color plotcolor, string chartname = null)
         {
@@ -388,25 +398,32 @@ namespace MRADS2.Controls
 
         public ChartEntry(Grid grid, LineChart.PlotTypes plottype, Thickness margin, string name, int row)
         {
-            Chart = new LineChart(plottype, name, margin);
-
+            Chart = new LineChart(plottype, name, margin, row);
             Name = name;
-            Row = row;
+            Row = row; // Always set to row 1 for charts
 
             this.grid = grid;
 
-            rowdef = new RowDefinition();
-            grid.RowDefinitions.Insert(grid.RowDefinitions.Count - 1, rowdef);
+            // Ensure that new rows are not added
+            if (grid.RowDefinitions.Count <= row)
+            {
+                while (grid.RowDefinitions.Count <= row)
+                {
+                    grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
+                }
+            }
 
+            Chart.SetValue(Grid.RowProperty, row);
             grid.Children.Add(Chart);
         }
 
         public void RemoveFromGrid()
         {
             grid.Children.Remove(Chart);
-
-            grid.RowDefinitions.Remove(rowdef);
         }
+
+
+
     }
 
     class XAxis : Canvas

@@ -171,14 +171,14 @@ namespace MRADS2.Controls
         WriteableBitmap bmp;
         Axis axis;
 
-        public LineChart(PlotTypes plottype, string chartname, Thickness margin)
+        public LineChart(PlotTypes plottype, string chartname, Thickness margin, int labelShift)
         {
             PlotType = plottype;
             PlotMargin = margin;
 
             Background = Brushes.Transparent;
 
-            axis = new Axis(PlotMargin, chartname);
+            axis = new Axis(PlotMargin, chartname, labelShift);
             axis.IsHitTestVisible = false;
             Children.Add(axis);
 
@@ -196,6 +196,7 @@ namespace MRADS2.Controls
             MinHeight = PlotMargin.Top + PlotMargin.Bottom + 1;
             MinWidth = PlotMargin.Right + PlotMargin.Left + 1;
         }
+
 
         private void LineChart_SizeChanged(object sender, SizeChangedEventArgs e)
         {
@@ -607,7 +608,7 @@ namespace MRADS2.Controls
             }
         }
     }
-    
+
     class Axis : Canvas
     {
         public double YMax;
@@ -616,6 +617,7 @@ namespace MRADS2.Controls
         public Thickness PlotMargin { get; set; }
         public string LabelFormat { get; set; }
         public string ChartName { get; set; }
+        private int labelShift; // New field to store the label shift value
 
         Typeface typeface = new Typeface("Segoe UI"), typeface2 = new Typeface(new FontFamily("Segoe UI"), FontStyles.Normal, FontWeights.Bold, FontStretches.Normal);
         DpiScale dpi;
@@ -624,11 +626,12 @@ namespace MRADS2.Controls
 
         public Color PlotColor(string name) => plots[name];
 
-        public Axis(Thickness plotmargin, string chartname, params (string plotname, Color plotcolor)[] plots)
+        public Axis(Thickness plotmargin, string chartname, int labelShift, params (string plotname, Color plotcolor)[] plots)
         {
             PlotMargin = plotmargin;
             ChartName = chartname;
             this.plots = plots.ToDictionary(a => a.plotname, a => a.plotcolor);
+            this.labelShift = labelShift; // Initialize the label shift
         }
 
         public void Redraw()
@@ -685,8 +688,10 @@ namespace MRADS2.Controls
             {
                 dc.DrawLine(pen, p1, p2);
 
-                if (plots.Count > 0)
+                if (drawlabels && plots.Count > 0)
+                {
                     DrawYAxisLabel(dc, p2, cury.ToString(labelfmt));
+                }
 
                 p1.Y += ysteppix;
                 p2.Y = p1.Y;
@@ -694,16 +699,18 @@ namespace MRADS2.Controls
             }
 
             if (plots.Count > 0)
+            {
                 DrawPlotLabels(dc);
+            }
         }
 
         void DrawPlotLabels(DrawingContext dc)
         {
             int boxsize = 7, spacing = 4;
-            Point loc = new Point(PlotMargin.Left, ActualHeight - PlotMargin.Bottom);
+            Point loc = new Point(PlotMargin.Left + labelShift, ActualHeight - PlotMargin.Bottom);
 
+            // Draw the chart name
             FormattedText t = new FormattedText(ChartName, System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, typeface2, 12, Brushes.Black, dpi.PixelsPerDip);
-
             t.TextAlignment = TextAlignment.Left;
 
             dc.DrawText(t, loc);
@@ -712,19 +719,22 @@ namespace MRADS2.Controls
 
             foreach (var p in plots)
             {
-                t = new FormattedText(p.Key, System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, typeface, 12, Brushes.Black, dpi.PixelsPerDip);
-
-                t.TextAlignment = TextAlignment.Left;
-
+                // Draw the plot color box
                 dc.DrawRectangle(new SolidColorBrush(p.Value), new Pen(Brushes.Black, 1), new Rect(loc.X, loc.Y + t.Height / 2 - boxsize / 2, boxsize, boxsize));
 
+                // Adjust location for the label text
                 loc.X += boxsize + spacing;
 
+                // Draw the plot label text
+                t = new FormattedText(p.Key, System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, typeface, 12, Brushes.Black, dpi.PixelsPerDip);
+                t.TextAlignment = TextAlignment.Left;
                 dc.DrawText(t, loc);
 
+                // Move location to the right for the next label
                 loc.X += spacing * 2 + t.Width;
             }
         }
+
 
         void DrawYAxisLabel(DrawingContext dc, Point p, string text)
         {
@@ -737,6 +747,7 @@ namespace MRADS2.Controls
             dc.DrawText(t, p);
         }
     }
+
 
     public class DataPointCollection
     {
