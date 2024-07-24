@@ -23,6 +23,8 @@ namespace MRADS2.Ships.GenericViewModels
         public BindVariable<string> YAxisAcceleration { get; private set; }
         public BindVariable<string> ZAxisAcceleration { get; private set; }
 
+        public BindVariable<string> LCDBoatSpeed { get; private set; }
+
         public void DefaultBind(MRADSDataVM datavm)
         {
             RollAngle = datavm.GetVariable("VMU", "RollAngle").Bind(v => ((double)v.RawValue).ToString("0.000"));
@@ -38,6 +40,8 @@ namespace MRADS2.Ships.GenericViewModels
             XAxisAcceleration = datavm.GetVariable("VMU", "XAxisAcceleration").Bind(v => ((double)v.RawValue).ToString("0.00"));
             YAxisAcceleration = datavm.GetVariable("VMU", "YAxisAcceleration").Bind(v => ((double)v.RawValue).ToString("0.00"));
             ZAxisAcceleration = datavm.GetVariable("VMU", "ZAxisAcceleration").Bind(v => ((double)v.RawValue).ToString("0.00"));
+
+            LCDBoatSpeed= datavm.GetVariable("Murphy LCD", "BoatSpeed").Bind(v => ((double)v.RawValue).ToString("0.0"));
         }
     }
 }
