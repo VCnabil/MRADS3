@@ -251,6 +251,7 @@ namespace MRADS2.Ships.StandardShip
             decoder = vmu.AddPGN(0xf029);
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateFloat("PitchAngle", d => (ToUInt24(d, 0) - 8192000.0) / 32768));
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateFloat("RollAngle", d => (ToUInt24(d, 3) - 8192000.0) / 32768));
+            decoder.AddVariableDefinition(MRADSVariableDefinition.CreateFloat("YawAngle", d => (ToUInt24(d, 3) - 8192000.0) / 32768));
             decoder.AddVariableDefinition(MRADSVariableDefinition.CreateFloat("AngleLatency", d => d[7] / 2.0));
 
             decoder = vmu.AddPGN(0xf02a);

@@ -11,6 +11,7 @@ namespace MRADS2.Ships.GenericViewModels
     {
         public BindVariable<string> RollAngle { get; private set; }
         public BindVariable<string> PitchAngle { get; private set; }
+        public BindVariable<string> YawAngle { get; private set; }
         public BindVariable<string> AngleLatency { get; private set; }
 
         public BindVariable<string> PitchRate { get; private set; }
@@ -26,6 +27,7 @@ namespace MRADS2.Ships.GenericViewModels
         {
             RollAngle = datavm.GetVariable("VMU", "RollAngle").Bind(v => ((double)v.RawValue).ToString("0.000"));
             PitchAngle = datavm.GetVariable("VMU", "PitchAngle").Bind(v => ((double)v.RawValue).ToString("0.000"));
+            YawAngle = datavm.GetVariable("VMU", "YawAngle").Bind(v => ((double)v.RawValue).ToString("0.000"));
             AngleLatency = datavm.GetVariable("VMU", "AngleLatency").Bind(v => ((double)v.RawValue).ToString("0.0"));
 
             PitchRate = datavm.GetVariable("VMU", "PitchRate").Bind(v => ((double)v.RawValue).ToString("0.000"));
