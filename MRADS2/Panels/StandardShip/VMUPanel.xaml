@@ -95,7 +95,7 @@
                 <Label Grid.Row="2" Style="{StaticResource HeaderAlign}" Content="Z-Axis (m/s²)"/>
                 <controls:DataBox Grid.Row="2" Grid.Column="1" Style="{StaticResource StandardDataBox}" Value="{Binding ZAxisAcceleration.Value}"/>
                 <Label Grid.Row="3" Style="{StaticResource HeaderAlign}" HorizontalContentAlignment="Right" Content="Boat Speed (kn)"/>
-                <controls:DataBox Grid.Row="3" Grid.Column="1" Style="{StaticResource StandardDataBox}" FloatFormat="0.00" Value="{Binding LCD.BoatSpeed.Value}"/>
+                <controls:DataBox Grid.Row="3" Grid.Column="1" Style="{StaticResource StandardDataBox}" FloatFormat="0.00" Value="{Binding LCDBoatSpeed.Value}"/>
             </Grid>
         </GroupBox>
     </Grid>
