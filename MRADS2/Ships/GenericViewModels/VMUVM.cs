@@ -9,6 +9,7 @@ namespace MRADS2.Ships.GenericViewModels
 {
     public class VMUVM : DefaultBindVM
     {
+        //working
         public BindVariable<string> RollAngle { get; private set; }
         public BindVariable<string> PitchAngle { get; private set; }
         public BindVariable<string> YawAngle { get; private set; }
